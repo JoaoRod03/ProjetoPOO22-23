@@ -1,7 +1,8 @@
 package POO;
 
 public class Artigo {
-    private boolean usado;
+    public enum Uso{Novo , Usado}
+    private Uso usado;
     private double avaliacao;
     private int donos;
     private String descricao;
@@ -12,7 +13,7 @@ public class Artigo {
     private String transportadora;
 
     public Artigo(){
-        this.usado = false;
+        this.usado = Uso.Usado;
         this.avaliacao = 0;
         this.donos = 0;
         this.descricao = "";
@@ -23,8 +24,8 @@ public class Artigo {
         this.transportadora = "";
     }
 
-    public Artigo(boolean usado, double avaliacao, int donos, String desc, String marca, String cod, double preco, double preco2, String transp){
-        this.usado = usado;
+    public Artigo(Uso uso, double avaliacao, int donos, String desc, String marca, String cod, double preco, double preco2, String transp){
+        this.usado = uso;
         this.avaliacao = avaliacao;
         this.donos = donos;
         this.descricao = desc;
@@ -51,7 +52,7 @@ public class Artigo {
         return new Artigo(this);
     }
 
-    public boolean getUsado(){
+    public Uso getUsado(){
         return this.usado;
     }
 
@@ -87,7 +88,7 @@ public class Artigo {
         return this.transportadora;
     }
 
-    public void setUsado(boolean usado){
+    public void setUsado(Uso usado){
         this.usado = usado;
     }
 
