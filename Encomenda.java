@@ -6,8 +6,8 @@ import java.time.LocalDate;
 
 public class Encomenda {
     public enum Tamanho{Grande,Medio,Pequeno}
-    public static final double New = 0.5;
-    public static final double Used = 0.25;
+    public static double New = 0.5;
+    public static double Used = 0.25;
     public enum Estado{Pendente,Finalizada,Expedida}
     
     private List<Artigo> lista;
