@@ -8,7 +8,6 @@ public class Sapatilha extends Artigo{
     private boolean laces;
     private String cor;
     private LocalDate colecao;
-    private double desconto;
     private boolean premium;
 
     public Sapatilha(){
@@ -17,27 +16,24 @@ public class Sapatilha extends Artigo{
         this.laces = false;
         this.cor = "";
         this.colecao = LocalDate.now();
-        this.desconto = 0;
         this.premium = false;
     }
 
-    public Sapatilha(Uso uso, double avaliacao, int donos, String desc, String marca, String cod, double preco, double preco2, String transp, double tamanho, boolean laces, String cor, LocalDate colecao, double desconto, boolean premium){
-        super (uso, avaliacao, donos, desc, marca, cod, preco, preco2, transp);
+    public Sapatilha(int nif, Uso uso, double avaliacao, int donos, String desc, String marca, String cod, double preco, double correcao, String transp, double tamanho, boolean laces, String cor, LocalDate colecao, boolean premium){
+        super (nif, uso, avaliacao, donos, desc, marca, cod, preco, correcao, transp);
         this.tamanho = tamanho;
         this.laces = laces;
         this.cor = cor;
         this.colecao = colecao;
-        this.desconto = desconto;
         this.premium = premium;
     }
 
     public Sapatilha(Sapatilha sapatilha){
-        super(sapatilha.getUsado(), sapatilha.getAvaliacao(), sapatilha.getDonos(), sapatilha.getDescricao(), sapatilha.getMarca(), sapatilha.getCodigo(), sapatilha.getPreco(), sapatilha.getPreco2(), sapatilha.getTransportadora());
+        super(sapatilha.getNif(), sapatilha.getUsado(), sapatilha.getAvaliacao(), sapatilha.getDonos(), sapatilha.getDescricao(), sapatilha.getMarca(), sapatilha.getCodigo(), sapatilha.getPreco(), sapatilha.getCorrecao(), sapatilha.getTransportadora());
         this.tamanho = sapatilha.getTamanho();
         this.laces = sapatilha.getLaces();
         this.cor = sapatilha.getCor();
         this.colecao = sapatilha.getColecao();
-        this.desconto = sapatilha.getDesconto();
         this.premium = sapatilha.getPremium();
     }
 
@@ -61,10 +57,6 @@ public class Sapatilha extends Artigo{
         return this.colecao;
     }
 
-    public double getDesconto(){
-        return this.desconto;
-    }
-
     public boolean getPremium(){
         return this.premium;
     }
@@ -84,11 +76,7 @@ public class Sapatilha extends Artigo{
     public void setColecao(LocalDate colecao){
         this.colecao = colecao;
     }
-
-    public void setDesconto(double desconto){
-        this.desconto = desconto;
-    }
-
+    
     public void setPremium(boolean premium){
         this.premium = premium;
     }

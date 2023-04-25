@@ -1,6 +1,7 @@
 package POO;
 
 public class Artigo {
+    private int nif;
     public enum Uso{Novo , Usado}
     private Uso usado;
     private double avaliacao;
@@ -9,10 +10,11 @@ public class Artigo {
     private String marca;
     private String codigo;
     private double preco;
-    private double preco2;
+    private double correcao;
     private String transportadora;
 
     public Artigo(){
+        this.nif = 0;
         this.usado = Uso.Usado;
         this.avaliacao = 0;
         this.donos = 0;
@@ -20,11 +22,12 @@ public class Artigo {
         this.marca = "";
         this.codigo = "";
         this.preco = 0;
-        this.preco2 = 0;
+        this.correcao = 0;
         this.transportadora = "";
     }
 
-    public Artigo(Uso uso, double avaliacao, int donos, String desc, String marca, String cod, double preco, double preco2, String transp){
+    public Artigo(int nif, Uso uso, double avaliacao, int donos, String desc, String marca, String cod, double preco, double correcao, String transp){
+        this.nif = nif;
         this.usado = uso;
         this.avaliacao = avaliacao;
         this.donos = donos;
@@ -32,11 +35,12 @@ public class Artigo {
         this.marca = marca;
         this.codigo = cod;
         this.preco = preco;
-        this.preco2 = preco2;
+        this.correcao = correcao;
         this.transportadora = transp; 
     }
 
     public Artigo(Artigo umArtigo){
+        this.nif = umArtigo.getNif();
         this.usado = umArtigo.getUsado();
         this.avaliacao = umArtigo.getAvaliacao();
         this.donos = umArtigo.getDonos();
@@ -44,7 +48,7 @@ public class Artigo {
         this.marca = umArtigo.getMarca();
         this.codigo = umArtigo.getCodigo();
         this.preco = umArtigo.getPreco();
-        this.preco2 = umArtigo.getPreco2();
+        this.correcao = umArtigo.getCorrecao();
         this.transportadora = umArtigo.getTransportadora(); 
     }
 
@@ -52,6 +56,10 @@ public class Artigo {
         return new Artigo(this);
     }
 
+    public int getNif(){
+        return this.nif;
+    }
+    
     public Uso getUsado(){
         return this.usado;
     }
@@ -80,12 +88,16 @@ public class Artigo {
         return this.preco;
     }
 
-    public double getPreco2(){
-        return this.preco2;
+    public double getCorrecao(){
+        return this.correcao;
     } 
 
     public String getTransportadora(){
         return this.transportadora;
+    }
+
+    public void setNif(int nif){
+        this.nif = nif;
     }
 
     public void setUsado(Uso usado){
@@ -116,8 +128,8 @@ public class Artigo {
         this.preco = preco;
     }
 
-    public void setPreco2(double preco2){
-        this.preco2 = preco2;
+    public void setCorrecao(double correcao){
+        this.correcao = correcao;
     } 
 
     public void setTransportadora(String transportadora){
