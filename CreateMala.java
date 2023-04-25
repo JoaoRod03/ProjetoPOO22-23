@@ -4,7 +4,7 @@ public class CreateMala {
     public static Mala create(String []arg){
         Mala mala = new Mala();
         
-        mala.setNif(Integer.parseInt(arg[1])); 
+        mala.setCodigouser(Integer.parseInt(arg[1])); 
         if(arg[2].equals("Novo")) mala.setUsado(Mala.Uso.Novo);
         else mala.setUsado(Mala.Uso.Usado);
         mala.setAvaliacao(Double.parseDouble(arg[3]));

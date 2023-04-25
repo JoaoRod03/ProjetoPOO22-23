@@ -1,7 +1,7 @@
 package POO;
 
 public class Artigo {
-    private int nif;
+    private int codigoUser;
     public enum Uso{Novo , Usado}
     private Uso usado;
     private double avaliacao;
@@ -14,7 +14,7 @@ public class Artigo {
     private String transportadora;
 
     public Artigo(){
-        this.nif = 0;
+        this.codigoUser = 0;
         this.usado = Uso.Usado;
         this.avaliacao = 0;
         this.donos = 0;
@@ -26,8 +26,8 @@ public class Artigo {
         this.transportadora = "";
     }
 
-    public Artigo(int nif, Uso uso, double avaliacao, int donos, String desc, String marca, String cod, double preco, double correcao, String transp){
-        this.nif = nif;
+    public Artigo(int codigoUser, Uso uso, double avaliacao, int donos, String desc, String marca, String cod, double preco, double correcao, String transp){
+        this.codigoUser = codigoUser;
         this.usado = uso;
         this.avaliacao = avaliacao;
         this.donos = donos;
@@ -40,7 +40,7 @@ public class Artigo {
     }
 
     public Artigo(Artigo umArtigo){
-        this.nif = umArtigo.getNif();
+        this.codigoUser = umArtigo.getCodigouser();
         this.usado = umArtigo.getUsado();
         this.avaliacao = umArtigo.getAvaliacao();
         this.donos = umArtigo.getDonos();
@@ -56,8 +56,8 @@ public class Artigo {
         return new Artigo(this);
     }
 
-    public int getNif(){
-        return this.nif;
+    public int getCodigouser(){
+        return this.codigoUser;
     }
     
     public Uso getUsado(){
@@ -96,8 +96,8 @@ public class Artigo {
         return this.transportadora;
     }
 
-    public void setNif(int nif){
-        this.nif = nif;
+    public void setCodigouser(int codigoUser){
+        this.codigoUser = codigoUser;
     }
 
     public void setUsado(Uso usado){

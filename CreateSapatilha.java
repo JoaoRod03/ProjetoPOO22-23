@@ -5,7 +5,7 @@ public class CreateSapatilha {
     public static Sapatilha create(String []arg){
         Sapatilha sapatilha = new Sapatilha();
         
-        sapatilha.setNif(Integer.parseInt(arg[1])); 
+        sapatilha.setCodigouser(Integer.parseInt(arg[1])); 
         if(arg[2].equals("Novo")) sapatilha.setUsado(Sapatilha.Uso.Novo);
         else sapatilha.setUsado(Sapatilha.Uso.Usado);
         sapatilha.setAvaliacao(Double.parseDouble(arg[3]));

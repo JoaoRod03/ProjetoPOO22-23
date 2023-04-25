@@ -19,8 +19,8 @@ public class Sapatilha extends Artigo{
         this.premium = false;
     }
 
-    public Sapatilha(int nif, Uso uso, double avaliacao, int donos, String desc, String marca, String cod, double preco, double correcao, String transp, double tamanho, boolean laces, String cor, LocalDate colecao, boolean premium){
-        super (nif, uso, avaliacao, donos, desc, marca, cod, preco, correcao, transp);
+    public Sapatilha(int codigoUser, Uso uso, double avaliacao, int donos, String desc, String marca, String cod, double preco, double correcao, String transp, double tamanho, boolean laces, String cor, LocalDate colecao, boolean premium){
+        super (codigoUser, uso, avaliacao, donos, desc, marca, cod, preco, correcao, transp);
         this.tamanho = tamanho;
         this.laces = laces;
         this.cor = cor;
@@ -29,7 +29,7 @@ public class Sapatilha extends Artigo{
     }
 
     public Sapatilha(Sapatilha sapatilha){
-        super(sapatilha.getNif(), sapatilha.getUsado(), sapatilha.getAvaliacao(), sapatilha.getDonos(), sapatilha.getDescricao(), sapatilha.getMarca(), sapatilha.getCodigo(), sapatilha.getPreco(), sapatilha.getCorrecao(), sapatilha.getTransportadora());
+        super(sapatilha.getCodigouser(), sapatilha.getUsado(), sapatilha.getAvaliacao(), sapatilha.getDonos(), sapatilha.getDescricao(), sapatilha.getMarca(), sapatilha.getCodigo(), sapatilha.getPreco(), sapatilha.getCorrecao(), sapatilha.getTransportadora());
         this.tamanho = sapatilha.getTamanho();
         this.laces = sapatilha.getLaces();
         this.cor = sapatilha.getCor();

@@ -4,7 +4,7 @@ public class CreateTshirt {
     public static Tshirt create(String []arg){
         Tshirt tshirt = new Tshirt();
         
-        tshirt.setNif(Integer.parseInt(arg[1])); 
+        tshirt.setCodigouser(Integer.parseInt(arg[1])); 
         if(arg[2].equals("Novo")) tshirt.setUsado(Tshirt.Uso.Novo);
         else tshirt.setUsado(Tshirt.Uso.Usado);
         tshirt.setAvaliacao(Double.parseDouble(arg[3]));

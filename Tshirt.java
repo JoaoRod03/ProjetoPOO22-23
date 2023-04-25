@@ -12,14 +12,14 @@ public class Tshirt extends Artigo{
         this.padrao = Padrao.liso;
     }
 
-    public Tshirt(int nif, Uso uso, double avaliacao, int donos, String desc, String marca, String cod, double preco, double correcao, String transp, Tamanho tamanho, Padrao padrao){
-        super (nif, uso, avaliacao, donos, desc, marca, cod, preco, correcao, transp);
+    public Tshirt(int codigoUser, Uso uso, double avaliacao, int donos, String desc, String marca, String cod, double preco, double correcao, String transp, Tamanho tamanho, Padrao padrao){
+        super (codigoUser, uso, avaliacao, donos, desc, marca, cod, preco, correcao, transp);
         this.tamanho = tamanho;
         this.padrao = padrao;
     }
 
     public Tshirt(Tshirt tshirt){
-        super(tshirt.getNif(), tshirt.getUsado(), tshirt.getAvaliacao(), tshirt.getDonos(), tshirt.getDescricao(), tshirt.getMarca(), tshirt.getCodigo(), tshirt.getPreco(), tshirt.getCorrecao(), tshirt.getTransportadora());
+        super(tshirt.getCodigouser(), tshirt.getUsado(), tshirt.getAvaliacao(), tshirt.getDonos(), tshirt.getDescricao(), tshirt.getMarca(), tshirt.getCodigo(), tshirt.getPreco(), tshirt.getCorrecao(), tshirt.getTransportadora());
         this.tamanho = tshirt.getTamanho();
         this.padrao = tshirt.getPadrao();
     }

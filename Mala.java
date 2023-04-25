@@ -19,8 +19,8 @@ public class Mala extends Artigo{
         this.premium = false;
     }
 
-    public Mala(int nif, Uso uso, double avaliacao, int donos, String desc, String marca, String cod, double preco, double correcao, String transp, double comprimento, double largura, double altura, String material, int anocolecao, boolean premium){
-        super (nif,uso, avaliacao, donos, desc, marca, cod, preco, correcao, transp);
+    public Mala(int codigoUser, Uso uso, double avaliacao, int donos, String desc, String marca, String cod, double preco, double correcao, String transp, double comprimento, double largura, double altura, String material, int anocolecao, boolean premium){
+        super (codigoUser,uso, avaliacao, donos, desc, marca, cod, preco, correcao, transp);
         this.comprimento = comprimento;
         this.largura = largura;
         this.altura = altura;
@@ -30,7 +30,7 @@ public class Mala extends Artigo{
     }
 
     public Mala(Mala mala){
-        super(mala.getNif(), mala.getUsado(), mala.getAvaliacao(), mala.getDonos(), mala.getDescricao(), mala.getMarca(), mala.getCodigo(), mala.getPreco(), mala.getCorrecao(), mala.getTransportadora());
+        super(mala.getCodigouser(), mala.getUsado(), mala.getAvaliacao(), mala.getDonos(), mala.getDescricao(), mala.getMarca(), mala.getCodigo(), mala.getPreco(), mala.getCorrecao(), mala.getTransportadora());
         this.comprimento = mala.getComprimento();
         this.largura = mala.getLargura();
         this.altura = mala.getAltura();

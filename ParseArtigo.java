@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 
-public class parseArtigo {
+public class ParseArtigo {
     public static Map<String,Artigo> parse(){
         Map<String,Artigo> art = new HashMap<>();
         try{

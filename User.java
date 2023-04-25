@@ -1,9 +1,11 @@
 package POO;
 import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.List; 
+import java.util.List;
+import java.security.DrbgParameters.Reseed;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
+import java.util.Map;
 
 public class User {
     private int codigo;
@@ -11,9 +13,9 @@ public class User {
     private String nome;
     private String morada;
     private int nif;
-    private List<Artigo> venda;
-    private List<Artigo> vendidos;
-    private List<Artigo> adquiridos;
+    private Map<String,Artigo> venda;
+    private Map<String,Artigo> vendidos;
+    private Map<String,Artigo> adquiridos;
     private double valorTotal;
 
     public User(){
@@ -22,21 +24,24 @@ public class User {
         this.nome = "";
         this.morada = "";
         this.nif = 0;
-        this.venda = new ArrayList<Artigo>();
-        this.vendidos = new ArrayList<Artigo>();
-        this.adquiridos = new ArrayList<Artigo>();
+        this.venda = new HashMap<String,Artigo>();
+        this.vendidos = new HashMap<String,Artigo>();
+        this.adquiridos = new HashMap<String,Artigo>();
         this.valorTotal = 0;
     }
 
-    public User (int codigo, String email, String nome, String morada, int nif, List<Artigo> venda, List<Artigo> vendidos, List<Artigo> adquiridos, double valorTotal){
+    public User (int codigo, String email, String nome, String morada, int nif, Map<String,Artigo> venda1,Map<String,Artigo> vendidos1, Map<String,Artigo> adquiridos1, double valorTotal){
         this.codigo = codigo;
         this.email = email;
         this.nome = nome;
         this.morada = morada;
         this.nif = nif;
-        this.venda = venda.stream().map(a -> a.clone()).collect(Collectors.toList());
-        this.vendidos = vendidos.stream().map(a -> a.clone()).collect(Collectors.toList());   
-        this.adquiridos = adquiridos.stream().map(a -> a.clone()).collect(Collectors.toList());
+        Map<String,Artigo> res1 = new HashMap<>(); for (String temp : venda1.keySet()) {res1.put(temp, venda1.get(temp).clone());}
+        this.venda = res1;
+        Map<String,Artigo> res2 = new HashMap<>(); for (String temp : vendidos1.keySet()) {res2.put(temp, vendidos1.get(temp).clone());}
+        this.vendidos = res2;
+        Map<String,Artigo> res3 = new HashMap<>(); for (String temp : adquiridos1.keySet()) {res3.put(temp, adquiridos1.get(temp).clone());}
+        this.adquiridos = res3;
         this.valorTotal = valorTotal;
     }
 
@@ -76,16 +81,28 @@ public class User {
         return this.nif;
     }
 
-    public List<Artigo> getVenda(){
-        return this.venda.stream().map(a -> a.clone()).collect(Collectors.toList());
+    public Map<String,Artigo> getVenda(){
+        Map<String,Artigo> res = new HashMap<String,Artigo>();
+        for (String temp : this.venda.keySet()){
+            res.put(temp, this.venda.get(temp).clone());
+        }
+        return res;
     }
 
-    public List<Artigo> getVendidos(){
-        return this.vendidos.stream().map(a -> a.clone()).collect(Collectors.toList());
+    public Map<String,Artigo> getVendidos(){
+        Map<String,Artigo> res = new HashMap<String,Artigo>();
+        for (String temp : this.vendidos.keySet()){
+            res.put(temp, this.vendidos.get(temp).clone());
+        }
+        return res;
     }
 
-    public List<Artigo> getAdquiridos(){
-        return this.adquiridos.stream().map(a -> a.clone()).collect(Collectors.toList());
+    public Map<String,Artigo> getAdquiridos(){
+        Map<String,Artigo> res = new HashMap<String,Artigo>();
+        for (String temp : this.adquiridos.keySet()){
+            res.put(temp, this.adquiridos.get(temp).clone());
+        }
+        return res;
     }
 
     public double getValortotal(){
@@ -112,16 +129,28 @@ public class User {
         this.nif = nif;
     }
 
-    public void setVenda(List<Artigo> venda){
-        this.venda = venda.stream().map(a -> a.clone()).collect(Collectors.toList());
+    public void setVenda(Map<String,Artigo> x){
+        Map<String,Artigo> res = new HashMap<String,Artigo>();
+        for (String temp : x.keySet()){
+            res.put(temp, x.get(temp).clone());
+        }
+        this.venda = res;
     }
 
-    public void setVendidos(List<Artigo> vendidos){
-        this.venda = vendidos.stream().map(a -> a.clone()).collect(Collectors.toList());
+    public void setVendidos(Map<String,Artigo> x){
+        Map<String,Artigo> res = new HashMap<String,Artigo>();
+        for (String temp : x.keySet()){
+            res.put(temp, x.get(temp).clone());
+        }
+        this.vendidos = res;
     }
 
-    public void setAdquiridos(List<Artigo> adquiridos){
-        this.venda = adquiridos.stream().map(a -> a.clone()).collect(Collectors.toList());
+    public void setAdquiridos(Map<String,Artigo> x){
+        Map<String,Artigo> res = new HashMap<String,Artigo>();
+        for (String temp : x.keySet()){
+            res.put(temp, x.get(temp).clone());
+        }
+        this.adquiridos= res;
     }
 
     public void setValortotal(double valorTotal){
