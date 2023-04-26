@@ -8,9 +8,8 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String []args){
-        Map <String,Artigo> artigos = ParseArtigo.parse(); // key -> codigo artigo 
-        Map <Integer,User> users = ParseUser.parse(artigos); // key -> codigo 
-        Map <String,Transportadora> transportadoras = ParseTransportadora.parse(); // key -> nome transportadora
+
+ 
         
         
     
