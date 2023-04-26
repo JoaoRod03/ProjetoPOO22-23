@@ -23,7 +23,8 @@ public class ParseUser {
                 users.put(Integer.parseInt(split[0]),CreateUser.create(split,artigos));
             }
             scanner.close();         
-        }catch(FileNotFoundException e){
+        }
+        catch(FileNotFoundException e){
             System.out.println("Erro");
             e.printStackTrace();
         }

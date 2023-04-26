@@ -10,24 +10,16 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 
-public class ParseArtigo {
-    public static Map<String,Artigo> parse(){
-        Map<String,Artigo> art = new HashMap<>();
+public class ParseTransportadora {
+    public static Map<String,Transportadora> parse(){
+        Map<String,Transportadora> transportadoras = new HashMap<>();
         try{
             File file = new File("artigos.txt");
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String [] split = line.split(";");
-                if (split[0] == "Mala"){
-                    art.put(split[7], CreateMala.create(split));
-                }
-                if (split[0] == "Sapatilha"){
-                    art.put(split[7],CreateSapatilha.create(split));
-                }
-                if (split[0] == "Tshirt"){
-                    art.put(split[7],CreateTshirt.create(split));
-                }
+                transportadoras.put((split[0]),CreateTransportadora.create(split));
             }
             scanner.close();
         } 
@@ -35,6 +27,6 @@ public class ParseArtigo {
             System.out.println("Erro");
             e.printStackTrace();
         }
-    return art;
+    return transportadoras;
     }
 }
