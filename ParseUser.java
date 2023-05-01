@@ -15,7 +15,7 @@ public class ParseUser {
     public static Map<Integer,User> parse(Map <String,Artigo> artigos){
         Map<Integer,User> users = new HashMap<>();
         try{
-            File file = new File("transportadora.txt");
+            File file = new File("users.txt");
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();

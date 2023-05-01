@@ -8,8 +8,12 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String []args){
+        Map <String,Artigo> market = ParseArtigo.parse();
+        Map <Integer,User> users = ParseUser.parse(market);
+        Map <String,Transportadora> transportadoras = ParseTransportadora.parse();
+        List <Encomenda> encomendas = ParseEncomenda.parse();
 
- 
+        Interativo.start(market, users, transportadoras,encomendas);
         
         
     

@@ -7,7 +7,7 @@ public class Sapatilha extends Artigo{
     private double tamanho;
     private boolean laces;
     private String cor;
-    private LocalDate colecao;
+    private int colecao;
     private boolean premium;
 
     public Sapatilha(){
@@ -15,11 +15,11 @@ public class Sapatilha extends Artigo{
         this.tamanho = 0;
         this.laces = false;
         this.cor = "";
-        this.colecao = LocalDate.now();
+        this.colecao = 0;
         this.premium = false;
     }
 
-    public Sapatilha(int codigoUser, Uso uso, double avaliacao, int donos, String desc, String marca, String cod, double preco, double correcao, String transp, double tamanho, boolean laces, String cor, LocalDate colecao, boolean premium){
+    public Sapatilha(int codigoUser, Uso uso, double avaliacao, int donos, String desc, String marca, String cod, double preco, double correcao, String transp, double tamanho, boolean laces, String cor, int colecao, boolean premium){
         super (codigoUser, uso, avaliacao, donos, desc, marca, cod, preco, correcao, transp);
         this.tamanho = tamanho;
         this.laces = laces;
@@ -53,7 +53,7 @@ public class Sapatilha extends Artigo{
         return this.cor;
     }
 
-    public LocalDate getColecao(){
+    public int getColecao(){
         return this.colecao;
     }
 
@@ -73,7 +73,7 @@ public class Sapatilha extends Artigo{
         this.cor = cor;
     }
 
-    public void setColecao(LocalDate colecao){
+    public void setColecao(int colecao){
         this.colecao = colecao;
     }
     

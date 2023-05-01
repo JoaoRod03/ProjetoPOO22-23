@@ -19,7 +19,7 @@ public class CreateSapatilha {
         sapatilha.setTamanho(Double.parseDouble(arg[11]));
         sapatilha.setLaces(arg[12].equals("true"));
         sapatilha.setCor(arg[13]);
-        sapatilha.setColecao(LocalDate.parse(arg[14]));
+        sapatilha.setColecao(Integer.parseInt(arg[14]));
         sapatilha.setPremium(arg[15].equals("true"));  
         return sapatilha;
     }
