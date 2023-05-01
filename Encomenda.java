@@ -1,5 +1,6 @@
 package POO;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,27 +12,25 @@ public class Encomenda {
     public static final double Used = 0.25;
     public enum Estado{pendente,finalizada,expedida}
     
-    private List<Artigo> lista;
+    private List<String> lista;
     private Tamanho tamanho;
     private double precofinal;
-    private double expedicao;
     private Estado estado;
     private LocalDate data;
 
     public Encomenda(){
-        this.lista = new ArrayList<Artigo>();
+        this.lista = new ArrayList<String>();
         this.tamanho = Tamanho.medio;
         this.precofinal = 0;
-        this.expedicao = 0;
         this.estado = Estado.pendente;
         this.data = LocalDate.now();
     }
 
-    public Encomenda(List<Artigo> lista, Tamanho tamanho, double precofinal, double expedicao, Estado estado, LocalDate data){
-        this.lista = lista.stream().map(a -> a.clone()).collect(Collectors.toList());
+    public Encomenda(List<String> lista, Tamanho tamanho, double precofinal, Estado estado, LocalDate data){
+        this.lista = new ArrayList<String>();
+        this.lista.addAll(lista);
         this.tamanho = tamanho;
         this.precofinal = precofinal;
-        this.expedicao = expedicao;
         this.estado = estado;
         this.data = data;
     }
@@ -40,7 +39,6 @@ public class Encomenda {
         this.lista = encomenda.getLista();
         this.tamanho = encomenda.getTamanho();
         this.precofinal = encomenda.getPrecofinal();
-        this.expedicao = encomenda.getExpedicao();
         this.estado = encomenda.getEstado();
         this.data = encomenda.getData();
     }
@@ -49,8 +47,10 @@ public class Encomenda {
         return new Encomenda(this);
     }
 
-    public List<Artigo> getLista(){
-        return this.lista.stream().map(a -> a.clone()).collect(Collectors.toList());
+    public List<String> getLista(){
+        List <String> res = new ArrayList<String>();
+        res.addAll(this.lista);
+        return res;
     }
 
     public Tamanho getTamanho(){
@@ -61,10 +61,6 @@ public class Encomenda {
         return this.precofinal;
     }
 
-    public double getExpedicao(){
-        return this.expedicao;
-    }
-
     public Estado getEstado(){
         return this.estado;
     }
@@ -73,8 +69,10 @@ public class Encomenda {
         return this.data;
     }
 
-    public void setLista(List<Artigo> lista){
-        this.lista = lista.stream().map(a -> a.clone()).collect(Collectors.toList());
+    public void setLista(List<String> lista){
+        List <String> res = new ArrayList<String>();
+        res.addAll(lista);
+        this.lista = res;
     }
 
     public void setTamanho(Tamanho tamanho){
@@ -84,11 +82,7 @@ public class Encomenda {
     public void setPrecofinal(double precofinal){
         this.precofinal = precofinal;
     }
-
-    public void setExpedicao(double expedicao){
-        this.expedicao = expedicao;
-    }
-
+    
     public void setEstado(Estado estado){
         this.estado = estado;
     }
@@ -96,8 +90,20 @@ public class Encomenda {
     public void setData(LocalDate data){
         this.data = data;
     }
-
     
+    public Map <Transportadora,List<Artigo>> divideEncomendas(Map<String,Artigo> market,Map <String,Transportadora> transportadoras){
+        Map <Transportadora,List<Artigo>> res = new HashMap<Transportadora,List <Artigo>>(); 
+        Transportadora trans = new Transportadora();
+        for(String temp  : this.lista){
+            mljljlkj;
+            if (!res.containsKey(trans)) res.put(trans, new ArrayList());
+            else res.get(trans).add(market.get(temp));
+        }
+        return res;
+    }
+
+
+
 
 
 

@@ -1,6 +1,8 @@
 package POO;
 
-public class Artigo {
+import javax.swing.AbstractAction;
+
+public abstract class Artigo {
     private int codigoUser;
     public enum Uso{Novo , Usado}
     private Uso usado;
@@ -52,9 +54,7 @@ public class Artigo {
         this.transportadora = umArtigo.getTransportadora(); 
     }
 
-    public Artigo clone(){
-        return new Artigo(this);
-    }
+    public abstract Artigo clone();
 
     public int getCodigouser(){
         return this.codigoUser;
@@ -135,6 +135,8 @@ public class Artigo {
     public void setTransportadora(String transportadora){
         this.transportadora = transportadora;
     }
+
+    public abstract double calculaPreco();
 
 }
 

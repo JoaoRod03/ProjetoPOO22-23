@@ -13,6 +13,11 @@ public class Main {
         Map <String,Transportadora> transportadoras = ParseTransportadora.parse();
         List <Encomenda> encomendas = ParseEncomenda.parse();
 
+        for(Artigo art : market.values()){System.out.println(art.toString());}
+        for(User user : users.values()){System.out.println(user.toString());}
+        for(Transportadora trans : transportadoras.values()){System.out.println(trans.toString());}
+        for(Encomenda enc : encomendas){System.out.println(enc.toString());}
+        
         Interativo.start(market, users, transportadoras,encomendas);
         
         

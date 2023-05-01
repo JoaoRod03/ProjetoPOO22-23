@@ -44,4 +44,11 @@ public class Tshirt extends Artigo{
         this.padrao = padrao;
     }
 
+    public double calculaPreco(){
+        double res = 0;
+        res = this.getPreco() - this.getCorrecao() ;
+        return res;
+    }
+
+
 }

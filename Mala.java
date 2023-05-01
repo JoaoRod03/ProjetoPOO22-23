@@ -91,5 +91,10 @@ public class Mala extends Artigo{
         this.premium = premium;
     }
 
-
+    public double calculaPreco(){
+        double res = 0;
+        if (this.premium) {res = this.getPreco() * 1.4; return res;}
+        res = this.getPreco() - this.getCorrecao() ;
+        return res;
+    }
 }

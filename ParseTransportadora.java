@@ -14,12 +14,12 @@ public class ParseTransportadora {
     public static Map<String,Transportadora> parse(){
         Map<String,Transportadora> transportadoras = new HashMap<>();
         try{
-            File file = new File("transportadoras.txt");
+            File file = new File("POO/transportadoras.txt");
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String [] split = line.split(";");
-                transportadoras.put((split[0]),CreateTransportadora.create(split));
+                transportadoras.put((split[1]),CreateTransportadora.create(split));
             }
             scanner.close();
         } 
