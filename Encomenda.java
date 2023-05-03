@@ -91,20 +91,17 @@ public class Encomenda {
         this.data = data;
     }
     
-    public Map <Transportadora,List<Artigo>> divideEncomendas(Map<String,Artigo> market,Map <String,Transportadora> transportadoras){
-        Map <Transportadora,List<Artigo>> res = new HashMap<Transportadora,List <Artigo>>(); 
-        Transportadora trans = new Transportadora();
-        for(String temp  : this.lista){
-            mljljlkj;
-            if (!res.containsKey(trans)) res.put(trans, new ArrayList());
-            else res.get(trans).add(market.get(temp));
-        }
-        return res;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+            sb.append("Encomenda")
+                .append(";").append(this.lista)
+                .append(";").append(this.tamanho)
+                .append(";").append(this.precofinal)
+                .append(";").append(this.estado)
+                .append(";").append(this.data);
+        return sb.toString();
     }
-
-
-
-
 
 
 }

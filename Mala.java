@@ -97,4 +97,26 @@ public class Mala extends Artigo{
         res = this.getPreco() - this.getCorrecao() ;
         return res;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Mala;").append(this.getCodigouser())
+                .append(";").append(this.getUsado())
+                .append(";").append(this.getAvaliacao())
+                .append(";").append(this.getDonos())
+                .append(";").append(this.getDescricao())
+                .append(";").append(this.getMarca())
+                .append(";").append(this.getCodigo())
+                .append(";").append(this.getPreco())
+                .append(";").append(this.getCorrecao())
+                .append(";").append(this.getTransportadora())
+                .append(";").append(this.comprimento)
+                .append(";").append(this.largura)
+                .append(";").append(this.altura)
+                .append(";").append(this.material)
+                .append(";").append(this.anocolecao)
+                .append(";").append(this.premium);
+        return sb.toString();
+    }
 }

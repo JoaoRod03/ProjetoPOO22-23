@@ -89,4 +89,25 @@ public class Sapatilha extends Artigo{
     }
 
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Sapatilha;").append(this.getCodigouser())
+                .append(";").append(this.getUsado())
+                .append(";").append(this.getAvaliacao())
+                .append(";").append(this.getDonos())
+                .append(";").append(this.getDescricao())
+                .append(";").append(this.getMarca())
+                .append(";").append(this.getCodigo())
+                .append(";").append(this.getPreco())
+                .append(";").append(this.getCorrecao())
+                .append(";").append(this.getTransportadora())
+                .append(";").append(this.tamanho)
+                .append(";").append(this.laces)
+                .append(";").append(this.cor)
+                .append(";").append(this.colecao)
+                .append(";").append(this.premium);
+        return sb.toString();
+    }
+
 }

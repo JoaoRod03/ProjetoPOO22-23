@@ -99,6 +99,17 @@ public class Transportadora {
         return expedicao;
     }
 
-
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Transportadora")
+                .append(";").append(this.nome)
+                .append(";").append(this.basePequena)
+                .append(";").append(this.baseMedia)
+                .append(";").append(this.baseGrande)
+                .append(";").append(this.imposto)
+                .append(";").append(this.lucro);
+        return sb.toString();
+    }
 
 }

@@ -158,5 +158,15 @@ public class User {
     }
 
 
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("User;").append(this.codigo)
+                .append(";").append(this.email)
+                .append(";").append(this.nome)
+                .append(";").append(this.morada)
+                .append(";").append(this.nif)
+                .append(";").append(this.valorTotal);
+        return sb.toString();
+    }
 
 }    

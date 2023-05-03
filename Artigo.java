@@ -138,5 +138,22 @@ public abstract class Artigo {
 
     public abstract double calculaPreco();
 
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.codigoUser)
+                .append(";").append(this.usado)
+                .append(";").append(this.avaliacao)
+                .append(";").append(this.donos)
+                .append(";").append(this.descricao)
+                .append(";").append(this.marca)
+                .append(";").append(this.codigo)
+                .append(";").append(this.preco)
+                .append(";").append(this.correcao)
+                .append(";").append(this.transportadora);
+        return sb.toString();
+    }
+
 }
 

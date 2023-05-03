@@ -50,5 +50,23 @@ public class Tshirt extends Artigo{
         return res;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Tshirt;").append(this.getCodigouser())
+                .append(";").append(this.getUsado())
+                .append(";").append(this.getAvaliacao())
+                .append(";").append(this.getDonos())
+                .append(";").append(this.getDescricao())
+                .append(";").append(this.getMarca())
+                .append(";").append(this.getCodigo())
+                .append(";").append(this.getPreco())
+                .append(";").append(this.getCorrecao())
+                .append(";").append(this.getTransportadora())
+                .append(";").append(this.tamanho)
+                .append(";").append(this.padrao);
+        return sb.toString();
+    }
+
 
 }

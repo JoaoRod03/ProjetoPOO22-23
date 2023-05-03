@@ -19,13 +19,13 @@ public class ParseArtigo {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String [] split = line.split(";");
-                if (split[0] == "Mala"){
+                if (split[0].equalsIgnoreCase("Mala")){
                     art.put(split[7], CreateMala.create(split));
                 }
-                if (split[0] == "Sapatilha"){
+                if (split[0].equalsIgnoreCase("Sapatilha")){
                     art.put(split[7],CreateSapatilha.create(split));
                 }
-                if (split[0] == "Tshirt"){
+                if (split[0].equalsIgnoreCase("Tshirt")){
                     art.put(split[7],CreateTshirt.create(split));
                 }
             }

@@ -2,26 +2,26 @@ package POO;
 
 public class CreateTshirt {
     public static Tshirt create(String []arg){
-        Tshirt tshirt = new Tshirt();
+        Tshirt shirt = new Tshirt();
         
-        tshirt.setCodigouser(Integer.parseInt(arg[1])); 
-        if(arg[2].equals("Novo")) tshirt.setUsado(Tshirt.Uso.Novo);
-        else tshirt.setUsado(Tshirt.Uso.Usado);
-        tshirt.setAvaliacao(Double.parseDouble(arg[3]));
-        tshirt.setDonos(Integer.parseInt(arg[4]));
-        tshirt.setDescricao(arg[5]);
-        tshirt.setMarca(arg[6]);
-        tshirt.setCodigo(arg[7]);
-        tshirt.setPreco(Double.parseDouble(arg[8]));
-        tshirt.setCorrecao(Double.parseDouble(arg[9]));
-        tshirt.setTransportadora(arg[10]);
-        if(arg[11].equals("S")) tshirt.setTamanho(Tshirt.Tamanho.S);
-        if(arg[11].equals("M")) tshirt.setTamanho(Tshirt.Tamanho.M);
-        if(arg[11].equals("L")) tshirt.setTamanho(Tshirt.Tamanho.L);
-        if(arg[11].equals("XL")) tshirt.setTamanho(Tshirt.Tamanho.XL);
-        if(arg[12].equals("liso")) tshirt.setPadrao(Tshirt.Padrao.liso);
-        if(arg[12].equals("riscas")) tshirt.setPadrao(Tshirt.Padrao.riscas);
-        if(arg[12].equals("palmeiras")) tshirt.setPadrao(Tshirt.Padrao.palmeiras);
-        return tshirt;
+        shirt.setCodigouser(Integer.parseInt(arg[1])); 
+        if(arg[2].equals("Novo")) shirt.setUsado(Tshirt.Uso.Novo);
+        else shirt.setUsado(Tshirt.Uso.Usado);
+        shirt.setAvaliacao(Double.parseDouble(arg[3]));
+        shirt.setDonos(Integer.parseInt(arg[4]));
+        shirt.setDescricao(arg[5]);
+        shirt.setMarca(arg[6]);
+        shirt.setCodigo(arg[7]);
+        shirt.setPreco(Double.parseDouble(arg[8]));
+        shirt.setCorrecao(Double.parseDouble(arg[9]));
+        shirt.setTransportadora(arg[10]);
+        if(arg[11].equals("S")) shirt.setTamanho(Tshirt.Tamanho.S);
+        if(arg[11].equals("M")) shirt.setTamanho(Tshirt.Tamanho.M);
+        if(arg[11].equals("L")) shirt.setTamanho(Tshirt.Tamanho.L);
+        if(arg[11].equals("XL")) shirt.setTamanho(Tshirt.Tamanho.XL);
+        if(arg[12].equals("liso")) shirt.setPadrao(Tshirt.Padrao.liso);
+        if(arg[12].equals("riscas")) shirt.setPadrao(Tshirt.Padrao.riscas);
+        if(arg[12].equals("palmeiras")) shirt.setPadrao(Tshirt.Padrao.palmeiras);
+        return shirt;
     }
 }
