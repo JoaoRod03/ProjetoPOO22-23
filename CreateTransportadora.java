@@ -9,6 +9,7 @@ public class CreateTransportadora {
         transportadora.setBasegrande(Double.parseDouble(arg[4]));
         transportadora.setImposto(Double.parseDouble(arg[5]));
         transportadora.setLucro(Double.parseDouble(arg[6]));
+        transportadora.setTempoexpedicao(Integer.parseInt(arg[7]));
         return transportadora;
     }
 }

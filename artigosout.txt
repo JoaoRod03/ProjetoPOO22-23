@@ -1,1 +1,1 @@
-Mala;123122;Novo;3.0;2;asasas;Ardidas;1efr3;100.4;0.3;CTT;15.0;5.0;5.0;Pele;2010;falseMala;123122;Novo;3.0;2;asasas;Ardidas;1eaa3;100.4;0.3;CTT;15.0;5.0;5.0;Pele;2010;false
+

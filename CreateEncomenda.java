@@ -1,5 +1,7 @@
 package POO;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.ArrayList;
 
 public class CreateEncomenda {
     public static Encomenda create(String []arg){
@@ -12,9 +14,12 @@ public class CreateEncomenda {
         if(arg[3].equalsIgnoreCase("finalizada")) encomenda.setEstado(Encomenda.Estado.finalizada);
         if(arg[3].equalsIgnoreCase("expedida")) encomenda.setEstado(Encomenda.Estado.expedida);
         encomenda.setData(LocalDate.parse(arg[4]));
+        encomenda.setNrartigos(Integer.parseInt(arg[5])); 
+        List temp = new ArrayList<String>();
         for(int i = 0; i < Integer.parseInt(arg[5]); i++){
-            encomenda.getLista().add(arg[i+6]);
+            temp.add(arg[i+6]);
         }
+        encomenda.setLista(temp);
         return encomenda;
     }
 }

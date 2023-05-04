@@ -7,6 +7,7 @@ public class Transportadora {
     private double baseGrande;   //+ 5 artigos
     private double imposto;
     private double lucro;
+    private int tempoexpedicao;
     
 
     public Transportadora(){
@@ -16,15 +17,17 @@ public class Transportadora {
         this.baseGrande = 0;
         this.imposto = 0;
         this.lucro = 0;
+        this.tempoexpedicao = 0;
     }
 
-    public Transportadora(String nome, double basePequena, double baseMedia, double baseGrande, double imposto, double lucro){
+    public Transportadora(String nome, double basePequena, double baseMedia, double baseGrande, double imposto, double lucro, int tempoexpedicao){
         this.nome = nome;
         this.basePequena = basePequena;
         this.baseMedia = baseMedia;
         this.baseGrande = baseGrande;
         this.imposto = imposto;
         this.lucro = lucro;
+        this.tempoexpedicao = tempoexpedicao;
     }
 
     public Transportadora(Transportadora transportadora){
@@ -34,6 +37,7 @@ public class Transportadora {
         this.baseGrande = transportadora.getBaseGrande();
         this.imposto = transportadora.getImposto();
         this.lucro = transportadora.getLucro();
+        this.tempoexpedicao = transportadora.getTempoexpedicao();
     }
 
     public Transportadora clone(){
@@ -64,6 +68,10 @@ public class Transportadora {
         return this.lucro;
     }    
 
+    public int getTempoexpedicao(){
+        return this.tempoexpedicao;
+    }
+
     public void setNome(String nome){
         this.nome = nome;
     }
@@ -88,6 +96,10 @@ public class Transportadora {
         this.lucro = lucro;
     }
 
+    public void setTempoexpedicao(int tempoexpedicao){
+        this.tempoexpedicao = tempoexpedicao;
+    }
+
     public double calculaExpedicao(int nrArtigos){
         double res = 0;
         double expedicao = 0;
@@ -108,7 +120,8 @@ public class Transportadora {
                 .append(";").append(this.baseMedia)
                 .append(";").append(this.baseGrande)
                 .append(";").append(this.imposto)
-                .append(";").append(this.lucro);
+                .append(";").append(this.lucro)
+                .append(";").append(this.tempoexpedicao);
         return sb.toString();
     }
 

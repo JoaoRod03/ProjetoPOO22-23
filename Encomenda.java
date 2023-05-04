@@ -17,6 +17,7 @@ public class Encomenda {
     private double precofinal;
     private Estado estado;
     private LocalDate data;
+    private int nrartigos;
 
     public Encomenda(){
         this.lista = new ArrayList<String>();
@@ -24,15 +25,17 @@ public class Encomenda {
         this.precofinal = 0;
         this.estado = Estado.pendente;
         this.data = LocalDate.now();
+        this.nrartigos = 0;
     }
 
-    public Encomenda(List<String> lista, Tamanho tamanho, double precofinal, Estado estado, LocalDate data){
+    public Encomenda(List<String> lista, Tamanho tamanho, double precofinal, Estado estado, LocalDate data, int nrartigos){
         this.lista = new ArrayList<String>();
         this.lista.addAll(lista);
         this.tamanho = tamanho;
         this.precofinal = precofinal;
         this.estado = estado;
         this.data = data;
+        this.nrartigos = nrartigos;
     }
 
     public Encomenda(Encomenda encomenda){
@@ -41,6 +44,7 @@ public class Encomenda {
         this.precofinal = encomenda.getPrecofinal();
         this.estado = encomenda.getEstado();
         this.data = encomenda.getData();
+        this.nrartigos = encomenda.getNrartigos();
     }
 
     public Encomenda clone(){
@@ -69,6 +73,10 @@ public class Encomenda {
         return this.data;
     }
 
+    public int getNrartigos(){
+        return this.nrartigos;
+    }
+
     public void setLista(List<String> lista){
         List <String> res = new ArrayList<String>();
         res.addAll(lista);
@@ -90,16 +98,27 @@ public class Encomenda {
     public void setData(LocalDate data){
         this.data = data;
     }
+
+    public void setNrartigos(int nrartigos){
+        this.nrartigos = nrartigos;
+    }
     
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
             sb.append("Encomenda")
-                .append(";").append(this.lista)
                 .append(";").append(this.tamanho)
                 .append(";").append(this.precofinal)
                 .append(";").append(this.estado)
-                .append(";").append(this.data);
+                .append(";").append(this.data)
+                .append(";").append(this.nrartigos)
+                .append(";");
+                for (int i = 0; i < this.lista.size(); i++) {
+                    sb.append(this.lista.get(i));
+                    if (i < this.lista.size() - 1) {
+                        sb.append(";");
+                    }
+                }
         return sb.toString();
     }
 

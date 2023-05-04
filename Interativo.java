@@ -15,7 +15,7 @@ public class Interativo {
         System.out.println("add Sapatilha Sapatilha;CodigoUser;Uso;avaliacao;donos;descricao;marca;codigo;preco;correcao;transportadora;tamanho;laces;cor;Colecao;premium");
         System.out.println("add Encomenda Encomenda;tamanho;precofinal;estado;data;nrartigos;artigo1;artigoN");
         System.out.println("add User User;codigo;email;nome;morada;nif;valorTotal");
-        System.out.println("add Transportadora Transportadora;nome;basePequena;baseMedia;baseGrande;imposto;lucro");
+        System.out.println("add Transportadora Transportadora;nome;basePequena;baseMedia;baseGrande;imposto;lucro;tempoexpedicao");
         System.out.println("exit");
         System.out.println("save\n");
         Scanner comando = new Scanner(System.in);
@@ -49,6 +49,7 @@ public class Interativo {
                 encomendas.add(CreateEncomenda.create(split));
             }
 
-        } 
+        }
+        comando.close(); 
     }
 }
