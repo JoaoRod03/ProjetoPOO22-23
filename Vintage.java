@@ -70,7 +70,7 @@ public class Vintage {
         }
     }
 
-    public static void testar(String []args){
+    public static void executar(String []args){
 
         Scanner sc = new Scanner(System.in);
 
@@ -86,7 +86,7 @@ public class Vintage {
         
         System.out.println("\n-------------------------------------------------------------------------------------------------------");
 
-        System.out.println("Deseja adicionar elementos\n?");
+        System.out.println("Deseja adicionar elementos?\n");
         String choice = sc.nextLine();
         if(choice.equalsIgnoreCase("sim")){
             InterativoAdd.start();

@@ -91,11 +91,19 @@ public class Encomenda {
         return res;
     }
 
+    public Tamanho calculaTamanho(){
+        Tamanho tamanho = Tamanho.pequena;
+        if(lista.size() == 1) tamanho = Tamanho.pequena;
+        if(lista.size() > 1 && lista.size() < 5) tamanho = Tamanho.media;
+        if(lista.size() > 5) tamanho = Tamanho.grande;
+        return tamanho;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
             sb.append("Encomenda")
-                .append(";").append(this.tamanho)
+                .append(";").append(this.calculaTamanho())
                 .append(";").append(this.getPrecoFinal())
                 .append(";").append(this.estado)
                 .append(";").append(this.data)
