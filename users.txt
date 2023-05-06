@@ -1,2 +1,0 @@
-User;123123;josefino@gmail.com;Josefino;Braga;255255255;190
-User;865397;alberta@alunos.uminho.pt;Alberta;Lisboa;239002147;53

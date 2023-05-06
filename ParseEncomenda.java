@@ -7,18 +7,29 @@ import java.time.LocalDate;
 import java.util.stream.Collectors;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.Scanner;
 
 public class ParseEncomenda {
-    public static List<Encomenda> parse(){
-        List<Encomenda> encomendas = new ArrayList<>();
+    public static Map<String,List<Encomenda>> parse(){
+        Map<String,List<Encomenda>> encomendas = new HashMap<>();
         try{
-            File file = new File("POO/encomendas.txt");
+            File file = new File("txts/encomendasIn.txt");
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                String [] split = line.split(";");
-                encomendas.add(CreateEncomenda.create(split));
+                String[] split = line.split(";");
+                Map<String,Encomenda> temp = CreateEncomenda.create(split);
+                
+                for(Map.Entry<String,Encomenda> entry : temp.entrySet()){
+                    if(!encomendas.containsKey(entry.getKey())){
+                        List<Encomenda> list = new ArrayList<>();
+                        list.add(entry.getValue());
+                        encomendas.put(entry.getKey(), list);
+                    }
+                    else{
+                        encomendas.get(entry.getKey()).add(entry.getValue());
+                    }
+                }
             }
             scanner.close();
         } 

@@ -14,7 +14,7 @@ public class ParseArtigo {
     public static Map<String,Artigo> parse(){
         Map<String,Artigo> art = new HashMap<>();
         try{
-            File file = new File("POO/artigos.txt");
+            File file = new File("txts/artigosIn.txt");
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();

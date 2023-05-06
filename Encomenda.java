@@ -14,37 +14,29 @@ public class Encomenda {
     
     private List<String> lista;
     private Tamanho tamanho;
-    private double precofinal;
     private Estado estado;
     private LocalDate data;
-    private int nrartigos;
 
     public Encomenda(){
         this.lista = new ArrayList<String>();
         this.tamanho = Tamanho.medio;
-        this.precofinal = 0;
         this.estado = Estado.pendente;
         this.data = LocalDate.now();
-        this.nrartigos = 0;
     }
 
-    public Encomenda(List<String> lista, Tamanho tamanho, double precofinal, Estado estado, LocalDate data, int nrartigos){
+    public Encomenda(List<String> lista, Tamanho tamanho, double precofinal, Estado estado, LocalDate data){
         this.lista = new ArrayList<String>();
         this.lista.addAll(lista);
         this.tamanho = tamanho;
-        this.precofinal = precofinal;
         this.estado = estado;
         this.data = data;
-        this.nrartigos = nrartigos;
     }
 
     public Encomenda(Encomenda encomenda){
         this.lista = encomenda.getLista();
         this.tamanho = encomenda.getTamanho();
-        this.precofinal = encomenda.getPrecofinal();
         this.estado = encomenda.getEstado();
         this.data = encomenda.getData();
-        this.nrartigos = encomenda.getNrartigos();
     }
 
     public Encomenda clone(){
@@ -61,9 +53,7 @@ public class Encomenda {
         return this.tamanho;
     }
 
-    public double getPrecofinal(){
-        return this.precofinal;
-    }
+
 
     public Estado getEstado(){
         return this.estado;
@@ -71,10 +61,6 @@ public class Encomenda {
 
     public LocalDate getData(){
         return this.data;
-    }
-
-    public int getNrartigos(){
-        return this.nrartigos;
     }
 
     public void setLista(List<String> lista){
@@ -87,10 +73,6 @@ public class Encomenda {
         this.tamanho = tamanho;
     }
 
-    public void setPrecofinal(double precofinal){
-        this.precofinal = precofinal;
-    }
-    
     public void setEstado(Estado estado){
         this.estado = estado;
     }
@@ -99,19 +81,27 @@ public class Encomenda {
         this.data = data;
     }
 
-    public void setNrartigos(int nrartigos){
-        this.nrartigos = nrartigos;
+    public void addArt(String artigo){
+        this.lista.add(artigo);
     }
     
+    public double getPrecoFinal(){
+        double res = 0;
+        for(String temp : this.lista){
+            res += Vintage.getArtigo(temp).getPreco();
+        }
+        return res;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
             sb.append("Encomenda")
                 .append(";").append(this.tamanho)
-                .append(";").append(this.precofinal)
+                .append(";").append(this.getPrecoFinal())
                 .append(";").append(this.estado)
                 .append(";").append(this.data)
-                .append(";").append(this.nrartigos)
+                .append(";").append(this.lista.size())
                 .append(";");
                 for (int i = 0; i < this.lista.size(); i++) {
                     sb.append(this.lista.get(i));

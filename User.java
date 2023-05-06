@@ -157,6 +157,12 @@ public class User {
         this.valorTotal = valorTotal;
     }
 
+    public double calculaValor(){
+        double res = 0;
+        for(Artigo art : this.vendidos.values()) res += art.getPreco();
+        return res;
+    }
+
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -165,7 +171,7 @@ public class User {
                 .append(";").append(this.nome)
                 .append(";").append(this.morada)
                 .append(";").append(this.nif)
-                .append(";").append(this.valorTotal);
+                .append(";").append(this.calculaValor());
         return sb.toString();
     }
 

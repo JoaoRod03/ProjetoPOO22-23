@@ -1,3 +1,0 @@
-Mala;380631;Usado;3;2;Top;LouisV;1efr3;100.4;0.3;CTT;15;5;5;Pele;2010;false
-Sapatilha;556098;Usado;5;1;CordoesRompidos;Ardidas;7uf9w;250;0.2;DPD;42;true;Branco;2023;true
-Tshirt;854014;Novo;4;0;Perfeita;Hacket;r1j8d;25;0.4;CTT;XL;liso

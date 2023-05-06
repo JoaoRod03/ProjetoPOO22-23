@@ -15,12 +15,12 @@ public class ParseUser {
     public static Map<Integer,User> parse(Map <String,Artigo> artigos){
         Map<Integer,User> users = new HashMap<>();
         try{
-            File file = new File("POO/users.txt");
+            File file = new File("txts/usersIn.txt");
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String [] split = line.split(";");
-                users.put(Integer.parseInt(split[1]),CreateUser.create(split,artigos));
+                users.put(Integer.parseInt(split[1]),CreateUser.create(split));
             }
             scanner.close();         
         }

@@ -7,14 +7,14 @@ import java.util.List;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 
-public class Interativo {
-    public static void start(Map <String,Artigo> market, Map <Integer,User> users, Map <String,Transportadora> transportadoras, List<Encomenda> encomendas){
+public class InterativoAdd {
+    public static void start(){
         System.out.println("\nWelcome to Vinted!\nChoose one of the following commands\n");
         System.out.println("add Mala Mala;CodigoUser;Uso;avaliacao;donos;descricao;marca;codigo;preco;correcao;transportadora;comprimento;largura;altura;material;Colecao;premium");
         System.out.println("add Tshirt Tshirt;CodigoUser;Uso;avaliacao;donos;descricao;marca;codigo;preco;correcao;transportadora;tamanho;padrao");
         System.out.println("add Sapatilha Sapatilha;CodigoUser;Uso;avaliacao;donos;descricao;marca;codigo;preco;correcao;transportadora;tamanho;laces;cor;Colecao;premium");
-        System.out.println("add Encomenda Encomenda;tamanho;precofinal;estado;data;nrartigos;artigo1;artigoN");
-        System.out.println("add User User;codigo;email;nome;morada;nif;valorTotal");
+        System.out.println("add Encomenda Encomenda;estado;data;nrartigos;artigo1;artigoN");
+        System.out.println("add User User;codigo;email;nome;morada;nif");
         System.out.println("add Transportadora Transportadora;nome;basePequena;baseMedia;baseGrande;imposto;lucro;tempoexpedicao");
         System.out.println("exit");
         System.out.println("save\n");
@@ -25,28 +25,28 @@ public class Interativo {
             String []splitEspaco = line.split(" ");
             if (splitEspaco[0].equalsIgnoreCase("exit")) return;
             if (splitEspaco[0].equalsIgnoreCase("save")) {
-                Save.save(market, users, transportadoras, encomendas);
+                //Save.save(market, users, transportadoras, encomendas);
                 return;
             }
             String specs = splitEspaco[2];
             String []split = specs.split(";");
             if (splitEspaco[1].equalsIgnoreCase("Mala")){
-                market.put(split[7], CreateMala.create(split));
+                Vintage.addMarket(CreateMala.create(split));
             }
             if (splitEspaco[1].equalsIgnoreCase("Tshirt")){
-                market.put(split[7], CreateTshirt.create(split));
+                Vintage.addMarket(CreateTshirt.create(split));
             }
             if (splitEspaco[1].equalsIgnoreCase("Sapatilha")){
-                market.put(split[7], CreateSapatilha.create(split));
+                Vintage.addMarket(CreateSapatilha.create(split));
             }
             if (splitEspaco[1].equalsIgnoreCase("User")){
-                users.put(Integer.parseInt(split[1]),CreateUser.create(split,market));
+                Vintage.addUser(CreateUser.create(split));
             }
             if (splitEspaco[1].equalsIgnoreCase("Transportadora")){
-                transportadoras.put((split[1]),CreateTransportadora.create(split));
+                Vintage.addTransportadora(CreateTransportadora.create(split));
             }
             if (splitEspaco[1].equalsIgnoreCase("Encomenda")){
-                encomendas.add(CreateEncomenda.create(split));
+                for(Map.Entry <String,Encomenda> entry : CreateEncomenda.create(split).entrySet()) Vintage.addEncomenda(entry.getKey(), entry.getValue());
             }
 
         }
