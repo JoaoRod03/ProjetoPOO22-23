@@ -30,8 +30,8 @@ public class CreateEncomenda {
                 }
                 encomenda.setLista(temp);
                 
-                if(temp.size() == 1) encomenda.setTamanho(Encomenda.Tamanho.pequeno);
-                if(temp.size() > 1 && temp.size() < 5) encomenda.setTamanho(Encomenda.Tamanho.medio);
+                if(temp.size() == 1) encomenda.setTamanho(Encomenda.Tamanho.pequena);
+                if(temp.size() > 1 && temp.size() < 5) encomenda.setTamanho(Encomenda.Tamanho.media);
                 if(temp.size() > 1) encomenda.setTamanho(Encomenda.Tamanho.grande);
             
                 for(String a : temp){preco += Vintage.getArtigo(a).getPreco();}

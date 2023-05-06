@@ -25,7 +25,7 @@ public class InterativoAdd {
             String []splitEspaco = line.split(" ");
             if (splitEspaco[0].equalsIgnoreCase("exit")) return;
             if (splitEspaco[0].equalsIgnoreCase("save")) {
-                //Save.save(market, users, transportadoras, encomendas);
+                Vintage.save();
                 return;
             }
             String specs = splitEspaco[2];

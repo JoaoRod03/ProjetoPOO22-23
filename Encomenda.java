@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import java.time.LocalDate;
 
 public class Encomenda {
-    public enum Tamanho{grande,medio,pequeno}
+    public enum Tamanho{grande,media,pequena}
     public static final double New = 0.5;
     public static final double Used = 0.25;
     public enum Estado{pendente,finalizada,expedida}
@@ -19,7 +19,7 @@ public class Encomenda {
 
     public Encomenda(){
         this.lista = new ArrayList<String>();
-        this.tamanho = Tamanho.medio;
+        this.tamanho = Tamanho.media;
         this.estado = Estado.pendente;
         this.data = LocalDate.now();
     }
@@ -52,8 +52,6 @@ public class Encomenda {
     public Tamanho getTamanho(){
         return this.tamanho;
     }
-
-
 
     public Estado getEstado(){
         return this.estado;
