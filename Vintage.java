@@ -1,5 +1,6 @@
 package POO;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.List; 
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
+import java.util.Iterator;
 
 
 import POO.Encomenda.Estado;
@@ -19,6 +21,7 @@ public class Vintage {
     private static Map <String,Transportadora> transportadoras = ParseTransportadora.parse();
     private static Map <String,List<Encomenda>> encomendas = ParseEncomenda.parse();
     private static Map <String,Artigo> vendidos = new HashMap<>();
+    private static LocalDate data = ParseData.parse();
 
     public static Artigo getArtigo(String cod){
         return market.get(cod).clone();
@@ -57,18 +60,75 @@ public class Vintage {
         else encomendas.get(transportadora).add(encomenda.clone());
     }
 
-    public static List <Artigo> getArtsUser(int cod){
-        return market.values().stream().filter(a -> a.getCodigouser() == cod).collect(Collectors.toList());
+    public static void removeEncomenda(String transportadora, Encomenda enc){
+        Iterator <Encomenda> iterator = encomendas.get(transportadora).iterator();
+        while(iterator.hasNext()){
+            Encomenda temp = iterator.next();
+            if(temp.equals(enc)) iterator.remove();
+        }
+    }
+
+    public static LocalDate getData(){
+        return data;
+    }
+
+    public static void setData(LocalDate data){
+        Vintage.data = data;
+    }
+
+    public static List <String> getArtsUser(int cod){
+        List <String> res = new ArrayList<>();
+        for(Artigo art : market.values()){
+            if(art.getCodigouser() == cod) res.add(art.getCodigo());
+        }
+        return res;
+    }
+
+    public static List <String> getVendidosUSer(int cod){
+        List <String> res = new ArrayList<>();
+        for(Artigo art : vendidos.values()){
+            if(art.getCodigouser() == cod) res.add(art.getCodigo());
+        }
+        return res;
     }
 
 
-    public static void finalizarEncomenda(String art){
+    public static void finalizarEncomenda(String art, LocalDate date){
         String trans = getArtigo(art).getTransportadora();
         List <Encomenda> temp = encomendas.get(trans);
         for (Encomenda enc : temp){
-            if (enc.getLista().contains(art)){if (enc.getEstado().equals(Encomenda.Estado.pendente)) enc.setEstado(Estado.finalizada);}
+            if (enc.getLista().contains(art)){if (enc.getEstado().equals(Encomenda.Estado.pendente)) {enc.setEstado(Estado.finalizada);enc.setData(date);}}
+        }
+    
+    }
+
+    public static void atualizarMarket(){
+        for(Map.Entry <String,List<Encomenda>> entry : encomendas.entrySet()){
+            int tempoexpedicao = transportadoras.get(entry.getKey()).getTempoexpedicao();
+
+            Iterator <Encomenda> iterator= entry.getValue().iterator();
+            while(iterator.hasNext()){
+                Encomenda enc = iterator.next();
+                LocalDate expedicao = enc.getData().plusDays(tempoexpedicao);
+
+                if(data.isEqual(expedicao) || data.isAfter(expedicao)){
+                    for(String temp : enc.getLista()){
+                        User u = users.get(market.get(temp).getCodigouser());
+                        
+                        u.removeVenda(temp);
+                        u.addVendidos(temp);
+                        market.remove(temp);
+                        vendidos.put(temp, market.get(temp));
+                    }
+                    iterator.remove();
+                }
+
+            }
         }
     }
+
+
+
 
     public static void executar(String []args){
 

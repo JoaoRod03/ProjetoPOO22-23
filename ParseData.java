@@ -9,17 +9,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-
-public class ParseTransportadora {
-    public static Map<String,Transportadora> parse(){
-        Map<String,Transportadora> transportadoras = new HashMap<>();
+public class ParseData {
+    public static LocalDate parse(){
+        LocalDate data = LocalDate.now();
         try{
-            File file = new File("txts/transportadorasIn.txt");
+            File file = new File("txts/data.txt");
             Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
+            if (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                String [] split = line.split(";");
-                transportadoras.put((split[1]),CreateTransportadora.create(split));
+                data = LocalDate.parse(line);
             }
             scanner.close();
         } 
@@ -27,6 +25,6 @@ public class ParseTransportadora {
             System.out.println("Erro");
             e.printStackTrace();
         }
-    return transportadoras;
+    return data;
     }
 }

@@ -12,10 +12,10 @@ public class CreateUser {
         user.setMorada(arg[4]);
         user.setNif(Integer.parseInt(arg[5]));
         
-        List <Artigo> artigos = Vintage.getArtsUser(Integer.parseInt(arg[1]));
+        List <String> artigos = Vintage.getArtsUser(Integer.parseInt(arg[1]));
         Map<String,Artigo> res = new HashMap<String,Artigo>();
 
-        for(Artigo temp : artigos){res.put(temp.getCodigo(),temp);}
+        for(String temp : artigos){res.put(Vintage.getArtigo(temp).getCodigo(),Vintage.getArtigo(temp));}
         user.setVenda(res);
         
         return user;

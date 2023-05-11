@@ -16,7 +16,6 @@ public class User {
     private Map<String,Artigo> venda;
     private Map<String,Artigo> vendidos;
     private Map<String,Artigo> adquiridos;
-    private double valorTotal;
 
     public User(){
         this.codigo = 0;
@@ -27,10 +26,9 @@ public class User {
         this.venda = new HashMap<String,Artigo>();
         this.vendidos = new HashMap<String,Artigo>();
         this.adquiridos = new HashMap<String,Artigo>();
-        this.valorTotal = 0;
     }
 
-    public User (int codigo, String email, String nome, String morada, int nif, Map<String,Artigo> venda1,Map<String,Artigo> vendidos1, Map<String,Artigo> adquiridos1, double valorTotal){
+    public User (int codigo, String email, String nome, String morada, int nif, Map<String,Artigo> venda1,Map<String,Artigo> vendidos1, Map<String,Artigo> adquiridos1){
         this.codigo = codigo;
         this.email = email;
         this.nome = nome;
@@ -42,7 +40,6 @@ public class User {
         this.vendidos = res2;
         Map<String,Artigo> res3 = new HashMap<>(); for (String temp : adquiridos1.keySet()) {res3.put(temp, adquiridos1.get(temp).clone());}
         this.adquiridos = res3;
-        this.valorTotal = valorTotal;
     }
 
     public User (User user){
@@ -54,7 +51,6 @@ public class User {
         this.venda = user.getVenda();
         this.vendidos = user.getVendidos();
         this.adquiridos = user.getAdquiridos();
-        this.valorTotal = user.getValortotal();
     }
 
     public User clone(){
@@ -105,9 +101,6 @@ public class User {
         return res;
     }
 
-    public double getValortotal(){
-        return this.valorTotal;
-    }
 
     public void setCodigo(int codigo){
         this.codigo = codigo;
@@ -153,15 +146,20 @@ public class User {
         this.adquiridos= res;
     }
 
-    public void setValortotal(double valorTotal){
-        this.valorTotal = valorTotal;
-    }
-
     public double calculaValor(){
         double res = 0;
         for(Artigo art : this.vendidos.values()) res += art.getPreco();
         return res;
     }
+
+    public void removeVenda(String cod){
+        venda.remove(cod);
+    }
+
+    public void addVendidos(String cod){
+        vendidos.put(cod, Vintage.getArtigo(cod));
+    }
+
 
 
     public String toString() {
@@ -173,6 +171,21 @@ public class User {
                 .append(";").append(this.nif)
                 .append(";").append(this.calculaValor());
         return sb.toString();
+    }
+
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if ((o == null) || (this.getClass() != o.getClass())) return false;
+
+        User user = (User) o;
+        return user.getCodigo() == this.codigo &&
+                user.getEmail().equals(this.email) &&
+                user.getNome().equals(this.nome) &&
+                user.getMorada().equals(this.morada) &&
+                user.getNif() == this.nif &&
+                user.getVenda().equals(this.venda) &&
+                user.getVendidos().equals(this.vendidos) &&
+                user.getAdquiridos().equals(this.adquiridos);
     }
 
 }    

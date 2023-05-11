@@ -118,5 +118,14 @@ public class Encomenda {
         return sb.toString();
     }
 
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if ((o == null) || (this.getClass() != o.getClass())) return false;
 
+        Encomenda enc = (Encomenda) o;
+        return enc.getLista().equals(this.lista) &&
+                enc.getTamanho() == this.tamanho &&
+                enc.getEstado() == this.estado &&
+                enc.getData() == this.data;
+    }
 }

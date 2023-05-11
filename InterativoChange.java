@@ -9,12 +9,13 @@ import java.util.stream.Collectors;
 
 public class InterativoChange {
     public static void start(){
-        System.out.println("finalizarEncomenda codArtigo");
+        System.out.println("finalizarEncomenda codArtigo data");
         System.out.println("avançarDias xDias");
         System.out.println("exit");
         System.out.println("save\n");
 
         Scanner comando = new Scanner(System.in);
+        Vintage.atualizarMarket();
 
         while(comando.hasNextLine()){ 
             String line = comando.nextLine();
@@ -25,10 +26,11 @@ public class InterativoChange {
                 return;
             }
             if (splitEspaco[0].equalsIgnoreCase("finalizarEncomenda")){
-                Vintage.finalizarEncomenda(splitEspaco[1]);
+                Vintage.finalizarEncomenda(splitEspaco[1],LocalDate.parse(splitEspaco[2]));
             }
             if (splitEspaco[0].equalsIgnoreCase("avançarDias")){
-  //              Vintage.alterarData(splitEspaco[1]);
+                Vintage.setData(Vintage.getData().plusDays(Long.parseLong(splitEspaco[1])));
+                Vintage.atualizarMarket();
             }
         }
         comando.close();
