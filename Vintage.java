@@ -12,8 +12,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
 import java.util.Iterator;
+import java.util.*;
 
-
+import POO.Artigo.Uso;
 import POO.Encomenda.Estado;
 
 public class Vintage {
@@ -22,11 +23,13 @@ public class Vintage {
     private static Map <String,Transportadora> transportadoras = ParseTransportadora.parse();
     private static Map <String,List<Encomenda>> encomendas = ParseEncomenda.parse();
     private static Map <String,Artigo> vendidos = new HashMap<>();
-    private static List<Encomenda> encomendasRealizadas = new ArrayList();
+    private static List<Encomenda> encomendasRealizadas = new ArrayList<Encomenda>();
     private static LocalDate data = ParseData.parse();
+    private static double faturacaoVintage; 
 
-
-    
+    public static double getFaturacao(){
+        return faturacaoVintage;
+    }
 
     public static Artigo getArtigo(String cod){
         return market.get(cod).clone();
@@ -135,7 +138,9 @@ public class Vintage {
                     if(data.isEqual(expedicao) || data.isAfter(expedicao)){
                         for(String temp : enc.getLista()){
                             User u = users.get(market.get(temp).getCodigouser());
-                        
+                            if (market.get(temp).getUsado() == Uso.Novo) faturacaoVintage+=0.5;
+                            if (market.get(temp).getUsado() == Uso.Usado) faturacaoVintage+=0.25;
+
                             u.removeVenda(temp);
                             u.addVendidos(temp);
                             vendidos.put(temp, market.get(temp));
@@ -160,6 +165,7 @@ public class Vintage {
         }
         return res;
     }
+
     public static Map<Integer,Double> userMaisFaturouTempo(LocalDate inicio, LocalDate fim){
         double temp = 0;
         Integer tempuser = 0;
@@ -182,9 +188,80 @@ public class Vintage {
         return res;
     }
 
+    public static Map<String,Double>  transportadoraMaisFaturou(){
+        double temp = 0;
+        double i = 0;
+        String res = "";
+        String transpNome = "";
+        Map <String,Double> result = new HashMap<String,Double>();
+        Map <String,Double> transportadorasFaturacao = new HashMap<String,Double>();
+        for(String cod : transportadoras.keySet()){transportadorasFaturacao.put(cod,temp);}
+        for(Encomenda enc : encomendasRealizadas){
+            transpNome = getArtigoVendidos(enc.getLista().get(0)).getTransportadora();
+            temp = geTransportadoraNome(transpNome).calculaExpedicao(enc.getLista().size());
+            double value = transportadorasFaturacao.get(transpNome);
+            value += temp;
+            transportadorasFaturacao.put(transpNome, value);
+        }
+        for(String key : transportadorasFaturacao.keySet()){
+            if (transportadorasFaturacao.get(key) > i){i = transportadorasFaturacao.get(key);res = key;}
+        }
+        result.put(res, i);
+        return result;
+    }
+
+    public static Map<String,Double>  transportadoraMaisFaturouData(LocalDate inicio, LocalDate fim){
+        double temp = 0;
+        double i = 0;
+        String res = "";
+        String transpNome = "";
+        Map <String,Double> result = new HashMap<String,Double>();
+        Map <String,Double> transportadorasFaturacao = new HashMap<String,Double>();
+        for(String cod : transportadoras.keySet()){transportadorasFaturacao.put(cod,temp);}
+        for(Encomenda enc : encomendasRealizadas){
+            if((enc.getData().isAfter(inicio)) && (enc.getData().isBefore(fim))){
+                transpNome = getArtigoVendidos(enc.getLista().get(0)).getTransportadora();
+                temp = geTransportadoraNome(transpNome).calculaExpedicao(enc.getLista().size());
+                double value = transportadorasFaturacao.get(transpNome);
+                value += temp;
+                transportadorasFaturacao.put(transpNome, value);
+            }
+        }
+        for(String key : transportadorasFaturacao.keySet()){
+            if (transportadorasFaturacao.get(key) > i){i = transportadorasFaturacao.get(key);res = key;}
+        }
+        result.put(res, i);
+        return result;
+    }
 
 
+    public static Map<Integer,Double> listMaisFaturouTempo(LocalDate inicio, LocalDate fim){
+        double temp = 0;
+        Map <Integer,Double> userFaturacao = new HashMap<>();
+        for(Integer cod : users.keySet()){userFaturacao.put(cod,temp);}
+        for(Encomenda enc : encomendasRealizadas){
+            if((enc.getData().isAfter(inicio)) && (enc.getData().isBefore(fim))){
+                for(String art : enc.getLista()){
+                    Double value = userFaturacao.get(getArtigoVendidos(art).getCodigouser());
+                    value += (getArtigoVendidos(art).calculaPreco());
+                    userFaturacao.put(getArtigoVendidos(art).getCodigouser(),value);
+                }
+            }
+        }
+        List<Map.Entry<Integer, Double>> entryList = new ArrayList<>(userFaturacao.entrySet());
+        Collections.sort(entryList, new Comparator<Map.Entry<Integer, Double>>() {
+            @Override
+            public int compare(Map.Entry<Integer, Double> entry1, Map.Entry<Integer, Double> entry2) {
+                return Double.compare(entry2.getValue(), entry1.getValue());
+            }
+        });
+        Map<Integer, Double> res = new LinkedHashMap<>();
+        for (Map.Entry<Integer, Double> entry : entryList) {
+            res.put(entry.getKey(), entry.getValue());
+        }
 
+        return res;
+    }
 
 
     public static void executar(String []args){
@@ -218,9 +295,9 @@ public class Vintage {
             for(List<Encomenda> enc : encomendas.values()){for(Encomenda es : enc){ System.out.println(es.toString());}}
             System.out.println("\n-------------------------------------------------------------------------------------------------------\n");
         }
-        else if(choice.equalsIgnoreCase("nao")){System.out.println("\n-------------------------------------------------------------------------------------------------------\n");}
+        else if(choice.equalsIgnoreCase("nao")){atualizarMarket();System.out.println("\n-------------------------------------------------------------------------------------------------------\n");}
         
-        System.out.println("Deseja manipular elementos?\n");
+        System.out.println("Deseja mudar elementos?\n");
         String choice2 = sc.nextLine();
         if(choice2.equalsIgnoreCase("sim")){
             InterativoChange.start();
