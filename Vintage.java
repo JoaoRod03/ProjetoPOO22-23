@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List; 
 import java.time.LocalDate;
 import java.util.stream.Collectors;
+import java.util.Collections;
 import java.io.IOException;
 import java.io.File;
 import java.io.FileWriter;
@@ -21,12 +22,20 @@ public class Vintage {
     private static Map <String,Transportadora> transportadoras = ParseTransportadora.parse();
     private static Map <String,List<Encomenda>> encomendas = ParseEncomenda.parse();
     private static Map <String,Artigo> vendidos = new HashMap<>();
+    private static List<Encomenda> encomendasRealizadas = new ArrayList();
     private static LocalDate data = ParseData.parse();
+
+
+    
 
     public static Artigo getArtigo(String cod){
         return market.get(cod).clone();
     }
         
+    public static Artigo getArtigoVendidos(String cod){
+        return vendidos.get(cod).clone();
+    }
+
     public static void addMarket(Artigo artigo){
         market.put(artigo.getCodigo(),artigo.clone()); 
     }
@@ -111,11 +120,7 @@ public class Vintage {
         }
     
     }
-
-
-
-
-
+ 
 
     public static void atualizarMarket(){
         for(Map.Entry <String,List<Encomenda>> entry : encomendas.entrySet()){
@@ -133,9 +138,10 @@ public class Vintage {
                         
                             u.removeVenda(temp);
                             u.addVendidos(temp);
-                            market.remove(temp);
                             vendidos.put(temp, market.get(temp));
+                            market.remove(temp);
                         }
+                    encomendasRealizadas.add(enc);
                     iterator.remove();
                     }
                 }
@@ -147,11 +153,36 @@ public class Vintage {
         double temp = 0;
         Integer res = 0;
         for(User user : users.values()){
-            if(user.calculaValor() > temp) temp = user.calculaValor();
+            if(user.calculaValor() > temp) {
+            temp = user.calculaValor();
             res = user.getCodigo();
+            }
         }
         return res;
     }
+    public static Map<Integer,Double> userMaisFaturouTempo(LocalDate inicio, LocalDate fim){
+        double temp = 0;
+        Integer tempuser = 0;
+        Map <Integer,Double> res = new HashMap<>();
+        Map <Integer,Double> userFaturacao = new HashMap<>();
+        for(Integer cod : users.keySet()){userFaturacao.put(cod,temp);}
+        for(Encomenda enc : encomendasRealizadas){
+            if((enc.getData().isAfter(inicio)) && (enc.getData().isBefore(fim))){
+                for(String art : enc.getLista()){
+                    Double value = userFaturacao.get(getArtigoVendidos(art).getCodigouser());
+                    value += (getArtigoVendidos(art).calculaPreco());
+                    userFaturacao.put(getArtigoVendidos(art).getCodigouser(),value);
+                }
+            }
+        }
+        for(Integer i : userFaturacao.keySet()){
+            if (userFaturacao.get(i) > temp){tempuser = i;temp = userFaturacao.get(i);}
+        }
+        res.put(tempuser,temp);
+        return res;
+    }
+
+
 
 
 
@@ -202,6 +233,7 @@ public class Vintage {
             for(Transportadora trans : transportadoras.values()){System.out.println(trans.toString());}
             System.out.println("");
             for(List<Encomenda> enc : encomendas.values()){for(Encomenda es : enc){ System.out.println(es.toString());}}
+            //for(Encomenda enc : encomendasRealizadas){ System.out.println(enc.toString());}
             System.out.println("\n-------------------------------------------------------------------------------------------------------\n");
         }
         else if(choice2.equalsIgnoreCase("nao")){
