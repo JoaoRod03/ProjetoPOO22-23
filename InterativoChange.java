@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class InterativoChange {
     public static void start(){
-        System.out.println("finalizarEncomenda codArtigo data");
+        System.out.println("\nfinalizarEncomenda codArtigo data");
         System.out.println("avançarDias xDias");
         System.out.println("exit");
         System.out.println("save\n");

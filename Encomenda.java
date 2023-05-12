@@ -4,6 +4,9 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import POO.Artigo.Uso;
+
 import java.time.LocalDate;
 
 public class Encomenda {
@@ -85,9 +88,15 @@ public class Encomenda {
     
     public double getPrecoFinal(){
         double res = 0;
+        String transportadora = "";
         for(String temp : this.lista){
-            res += Vintage.getArtigo(temp).getPreco();
+            res += Vintage.getArtigo(temp).calculaPreco();
+            if (Vintage.getArtigo(temp).getUsado() == Uso.Novo) res += 0.5;
+            if (Vintage.getArtigo(temp).getUsado() == Uso.Usado) res += 0.25;
         }
+        transportadora = Vintage.getArtigo(this.lista.get(0)).getTransportadora();
+        Transportadora transp = Vintage.geTransportadoraNome(transportadora); 
+        res += transp.calculaExpedicao(this.lista.size());
         return res;
     }
 

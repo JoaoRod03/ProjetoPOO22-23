@@ -110,4 +110,27 @@ public class Sapatilha extends Artigo{
         return sb.toString();
     }
 
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if ((o == null) || (this.getClass() != o.getClass())) return false;
+
+        Sapatilha sapatilha = (Sapatilha) o;
+        return sapatilha.getCodigouser() == (this.getCodigouser()) &&
+                sapatilha.getUsado() == this.getUsado() &&
+                sapatilha.getAvaliacao() == this.getAvaliacao() &&
+                sapatilha.getDonos() == this.getDonos() &&
+                sapatilha.getDescricao().equals(this.getDescricao()) &&
+                sapatilha.getMarca().equals(this.getMarca()) &&
+                sapatilha.getCodigo().equals(this.getCodigo()) &&
+                sapatilha.getPreco() == this.getPreco() &&
+                sapatilha.getCorrecao() == this.getCorrecao() &&
+                sapatilha.getTransportadora().equals(this.getTransportadora()) &&
+                sapatilha.getTamanho() == this.tamanho &&
+                sapatilha.getLaces() == this.laces &&
+                sapatilha.getCor().equals(this.cor) &&
+                sapatilha.getColecao() == this.colecao &&
+                sapatilha.getPremium() == this.premium;
+    }
+
+
 }

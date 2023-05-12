@@ -39,12 +39,20 @@ public class Vintage {
         users.put(user.getCodigo(), user.clone());
     }
 
+    public static User getUser(Integer cod){
+        return users.get(cod).clone();
+    }
+
     public static void removeUser(Integer cod){
         users.remove(cod);
     }
 
     public static void addTransportadora(Transportadora transportadora){
         transportadoras.put(transportadora.getNome(), transportadora.clone());
+    }
+
+    public static Transportadora geTransportadoraNome(String transp){
+        return transportadoras.get(transp).clone();
     }
 
     public static void removeTransportadora(String nome){
@@ -97,10 +105,17 @@ public class Vintage {
         String trans = getArtigo(art).getTransportadora();
         List <Encomenda> temp = encomendas.get(trans);
         for (Encomenda enc : temp){
-            if (enc.getLista().contains(art)){if (enc.getEstado().equals(Encomenda.Estado.pendente)) {enc.setEstado(Estado.finalizada);enc.setData(date);}}
+            if (enc.getLista().contains(art)){
+                if (enc.getEstado().equals(Encomenda.Estado.pendente)) enc.setEstado(Estado.finalizada);enc.setData(date);
+            }
         }
     
     }
+
+
+
+
+
 
     public static void atualizarMarket(){
         for(Map.Entry <String,List<Encomenda>> entry : encomendas.entrySet()){
@@ -109,22 +124,33 @@ public class Vintage {
             Iterator <Encomenda> iterator= entry.getValue().iterator();
             while(iterator.hasNext()){
                 Encomenda enc = iterator.next();
-                LocalDate expedicao = enc.getData().plusDays(tempoexpedicao);
+                if(enc.getEstado() == Estado.finalizada){
+                    LocalDate expedicao = enc.getData().plusDays(tempoexpedicao);
 
-                if(data.isEqual(expedicao) || data.isAfter(expedicao)){
-                    for(String temp : enc.getLista()){
-                        User u = users.get(market.get(temp).getCodigouser());
+                    if(data.isEqual(expedicao) || data.isAfter(expedicao)){
+                        for(String temp : enc.getLista()){
+                            User u = users.get(market.get(temp).getCodigouser());
                         
-                        u.removeVenda(temp);
-                        u.addVendidos(temp);
-                        market.remove(temp);
-                        vendidos.put(temp, market.get(temp));
-                    }
+                            u.removeVenda(temp);
+                            u.addVendidos(temp);
+                            market.remove(temp);
+                            vendidos.put(temp, market.get(temp));
+                        }
                     iterator.remove();
+                    }
                 }
-
             }
         }
+    }
+
+    public static Integer userMaisFaturou(){
+        double temp = 0;
+        Integer res = 0;
+        for(User user : users.values()){
+            if(user.calculaValor() > temp) temp = user.calculaValor();
+            res = user.getCodigo();
+        }
+        return res;
     }
 
 
@@ -179,22 +205,21 @@ public class Vintage {
             System.out.println("\n-------------------------------------------------------------------------------------------------------\n");
         }
         else if(choice2.equalsIgnoreCase("nao")){
-                
-                System.out.println("\n-------------------------------------------------------------------------------------------------------\n");
-
-                for(Artigo art : market.values()){System.out.println(art.toString());}
-                System.out.println("");
-                for(User user : users.values()){System.out.println(user.toString());}
-                System.out.println("");
-                for(Transportadora trans : transportadoras.values()){System.out.println(trans.toString());}
-                System.out.println("");
-                for(List<Encomenda> enc : encomendas.values()){for(Encomenda es : enc){ System.out.println(es.toString());}}
-        
                 System.out.println("\n-------------------------------------------------------------------------------------------------------\n");
         }
         
+        System.out.println("Deseja verificar estatísticas?\n");
+        String choice3 = sc.nextLine();
+        if(choice3.equalsIgnoreCase("sim")){
+            InterativoStats.start();
+            System.out.println("\n-------------------------------------------------------------------------------------------------------\n");
+        }
+        else if(choice3.equalsIgnoreCase("nao")){
+                System.out.println("\n-------------------------------------------------------------------------------------------------------\n");
+        }
         
-    
+        sc.close();
+        
     } 
 
     public static void save(){

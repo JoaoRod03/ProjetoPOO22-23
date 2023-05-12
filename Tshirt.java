@@ -46,7 +46,13 @@ public class Tshirt extends Artigo{
 
     public double calculaPreco(){
         double res = 0;
-        res = this.getPreco() - this.getCorrecao() ;
+        res = this.getPreco();
+        if((this.getPadrao() == Padrao.riscas || this.getPadrao() == Padrao.palmeiras) && (this.getUsado() == Uso.Usado)){
+            res = this.getPreco() * 0.5;
+        }
+        if((this.getPadrao() == Padrao.riscas || this.getPadrao() == Padrao.palmeiras) && (this.getUsado() == Uso.Novo)){
+            res = this.getPreco() - (this.getPreco() * this.getCorrecao());
+        }
         return res;
     }
 
@@ -66,6 +72,26 @@ public class Tshirt extends Artigo{
                 .append(";").append(this.tamanho)
                 .append(";").append(this.padrao);
         return sb.toString();
+    }
+
+
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if ((o == null) || (this.getClass() != o.getClass())) return false;
+
+        Tshirt tshirt = (Tshirt) o;
+        return tshirt.getCodigouser() == (this.getCodigouser()) &&
+                tshirt.getUsado() == this.getUsado() &&
+                tshirt.getAvaliacao() == this.getAvaliacao() &&
+                tshirt.getDonos() == this.getDonos() &&
+                tshirt.getDescricao().equals(this.getDescricao()) &&
+                tshirt.getMarca().equals(this.getMarca()) &&
+                tshirt.getCodigo().equals(this.getCodigo()) &&
+                tshirt.getPreco() == this.getPreco() &&
+                tshirt.getCorrecao() == this.getCorrecao() &&
+                tshirt.getTransportadora().equals(this.getTransportadora()) &&
+                tshirt.getTamanho() == this.tamanho &&
+                tshirt.getPadrao() == this.padrao;
     }
 
 

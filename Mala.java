@@ -1,5 +1,4 @@
 package POO;
-import java.time.LocalDate;
 
 public class Mala extends Artigo{
     private double comprimento;
@@ -94,7 +93,7 @@ public class Mala extends Artigo{
     public double calculaPreco(){
         double res = 0;
         if (this.premium) {res = this.getPreco() * 1.4; return res;}
-        res = this.getPreco() - this.getCorrecao() ;
+        res = this.getPreco() - (this.getCorrecao() * this.getPreco()) ;
         return res;
     }
 
@@ -119,4 +118,29 @@ public class Mala extends Artigo{
                 .append(";").append(this.premium);
         return sb.toString();
     }
+
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if ((o == null) || (this.getClass() != o.getClass())) return false;
+
+        Mala mala = (Mala) o;
+        return mala.getCodigouser() == (this.getCodigouser()) &&
+                mala.getUsado() == this.getUsado() &&
+                mala.getAvaliacao() == this.getAvaliacao() &&
+                mala.getDonos() == this.getDonos() &&
+                mala.getDescricao().equals(this.getDescricao()) &&
+                mala.getMarca().equals(this.getMarca()) &&
+                mala.getCodigo().equals(this.getCodigo()) &&
+                mala.getPreco() == this.getPreco() &&
+                mala.getCorrecao() == this.getCorrecao() &&
+                mala.getTransportadora().equals(this.getTransportadora()) &&
+                mala.getComprimento() == this.comprimento &&
+                mala.getLargura() == this.largura &&
+                mala.getAltura() == this.altura &&
+                mala.getMaterial().equals(this.material) &&
+                mala.getAnocolecao() == this.anocolecao &&
+                mala.getPremium() == this.premium;
+    }
+
+
 }

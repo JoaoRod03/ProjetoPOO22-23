@@ -148,7 +148,7 @@ public class User {
 
     public double calculaValor(){
         double res = 0;
-        for(Artigo art : this.vendidos.values()) res += art.getPreco();
+        for(Artigo art : this.vendidos.values()) res += art.calculaPreco();
         return res;
     }
 

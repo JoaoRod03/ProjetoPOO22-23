@@ -155,5 +155,22 @@ public abstract class Artigo {
         return sb.toString();
     }
 
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if ((o == null) || (this.getClass() != o.getClass())) return false;
+
+        Artigo art = (Artigo) o;
+        return art.getCodigouser() == (this.codigoUser) &&
+                art.getUsado() == this.usado &&
+                art.getAvaliacao() == this.avaliacao &&
+                art.getDonos() == this.donos &&
+                art.getDescricao().equals(this.descricao) &&
+                art.getMarca().equals(this.marca) &&
+                art.getCodigo().equals(this.codigo) &&
+                art.getPreco() == this.preco &&
+                art.getCorrecao() == this.correcao &&
+                art.getTransportadora().equals(this.transportadora);
+    }
+
 }
 

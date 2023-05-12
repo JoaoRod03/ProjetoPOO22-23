@@ -125,4 +125,19 @@ public class Transportadora {
         return sb.toString();
     }
 
+    public boolean equals(Object o){
+        if (this == o) return true;
+        if ((o == null) || (this.getClass() != o.getClass())) return false;
+
+        Transportadora transportadora = (Transportadora) o;
+        return transportadora.getNome().equals(this.nome) &&
+                transportadora.getBasePequena() == this.basePequena &&
+                transportadora.getBaseMedia() == this.baseMedia &&
+                transportadora.getBaseGrande() == this.baseGrande &&
+                transportadora.getImposto() == (this.imposto) &&
+                transportadora.getLucro() == (this.lucro) &&
+                transportadora.getTempoexpedicao() == (this.tempoexpedicao);
+    }
+
+
 }
