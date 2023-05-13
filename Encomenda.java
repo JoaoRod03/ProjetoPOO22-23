@@ -95,7 +95,7 @@ public class Encomenda {
             if (Vintage.getArtigo(temp).getUsado() == Uso.Usado) res += 0.25;
         }
         transportadora = Vintage.getArtigo(this.lista.get(0)).getTransportadora();
-        Transportadora transp = Vintage.geTransportadoraNome(transportadora); 
+        Transportadora transp = Vintage.getTransportadoraNome(transportadora); 
         res += transp.calculaExpedicao(this.lista.size());
         return res;
     }

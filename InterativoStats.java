@@ -14,6 +14,7 @@ public class InterativoStats {
         System.out.println("UsersFaturacaoOrdenados DataInício DataFim");
         System.out.println("TransportadoraMaiorFaturação DataInício DataFim");
         System.out.println("TransportadoraMaiorFaturaçãoData DataInício DataFim");
+        System.out.println("MaiorVendedor DataInício DataFim");
         System.out.println("FaturaçãoVintage");
         System.out.println("exit\n");
 
@@ -24,12 +25,12 @@ public class InterativoStats {
             String []splitEspaco = line.split(" ");
             if (splitEspaco[0].equalsIgnoreCase("exit")) return;
             if (splitEspaco[0].equalsIgnoreCase("UserMaiorFaturacao")){
-                System.out.println(Vintage.userMaisFaturou() + ";" + (Vintage.getUser(Vintage.userMaisFaturou()).calculaValor()));
+                System.out.println(Vintage.userMaisFaturou() + ";" + Vintage.getUser(Vintage.userMaisFaturou()).getNome() + ";" + (Vintage.getUser(Vintage.userMaisFaturou()).calculaValor()));
             }
             if (splitEspaco[0].equalsIgnoreCase("UserMaiorFaturacaoData")){
                 System.out.println("");
                 Map<Integer,Double> res = Vintage.userMaisFaturouTempo(LocalDate.parse(splitEspaco[1]), LocalDate.parse(splitEspaco[2]));
-                for(Map.Entry <Integer,Double> entry : res.entrySet()){System.out.println(entry.getKey() + ";" + entry.getValue());};
+                for(Map.Entry <Integer,Double> entry : res.entrySet()){System.out.println(entry.getKey() + ";" + Vintage.getUser(entry.getKey()).getNome() + ";" + entry.getValue());};
             }
             if (splitEspaco[0].equalsIgnoreCase("FaturacaoVintage")){
                 System.out.println("");
@@ -38,17 +39,22 @@ public class InterativoStats {
             if (splitEspaco[0].equalsIgnoreCase("TransportadoraMaiorFaturacao")){
                 System.out.println("");
                 Map<String,Double> res = Vintage.transportadoraMaisFaturou();
-                for(Map.Entry <String,Double> entry : res.entrySet()){System.out.println(entry.getKey() + ";" + entry.getValue());};
+                for(Map.Entry <String,Double> entry : res.entrySet()){System.out.println(entry.getKey() + ";" + Vintage.getTransportadoraNome(entry.getKey()).getNome() + ";" + entry.getValue());};
             }
             if (splitEspaco[0].equalsIgnoreCase("TransportadoraMaiorFaturacaoData")){
                 System.out.println("");
                 Map<String,Double> res = Vintage.transportadoraMaisFaturouData(LocalDate.parse(splitEspaco[1]),LocalDate.parse(splitEspaco[2]));
-                for(Map.Entry <String,Double> entry : res.entrySet()){System.out.println(entry.getKey() + ";" + entry.getValue());};
+                for(Map.Entry <String,Double> entry : res.entrySet()){System.out.println(entry.getKey() + ";" + Vintage.getTransportadoraNome(entry.getKey()).getNome() + ";" + entry.getValue());};
             }
             if (splitEspaco[0].equalsIgnoreCase("UsersFaturacaoOrdenados")){
                 System.out.println("");
                 Map<Integer,Double> res = Vintage.listMaisFaturouTempo(LocalDate.parse(splitEspaco[1]),LocalDate.parse(splitEspaco[2]));
-                for(Map.Entry <Integer,Double> entry : res.entrySet()){System.out.println(entry.getKey() + ";" + entry.getValue());};
+                for(Map.Entry <Integer,Double> entry : res.entrySet()){System.out.println(entry.getKey() + ";" + Vintage.getUser(entry.getKey()).getNome() + ";" + entry.getValue());};
+            }
+            if (splitEspaco[0].equalsIgnoreCase("MaiorVendedor")){
+                System.out.println("");
+                Map<Integer,Integer> res = Vintage.maiorVendedor(LocalDate.parse(splitEspaco[1]),LocalDate.parse(splitEspaco[2]));
+                for(Map.Entry <Integer,Integer> entry : res.entrySet()){System.out.println(entry.getKey() + ";" + Vintage.getUser(entry.getKey()).getNome() + ";" + entry.getValue() + "artigos");};
             }
         }
         comando.close();

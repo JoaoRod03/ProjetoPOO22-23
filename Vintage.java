@@ -63,7 +63,7 @@ public class Vintage {
         transportadoras.put(transportadora.getNome(), transportadora.clone());
     }
 
-    public static Transportadora geTransportadoraNome(String transp){
+    public static Transportadora getTransportadoraNome(String transp){
         return transportadoras.get(transp).clone();
     }
 
@@ -198,7 +198,7 @@ public class Vintage {
         for(String cod : transportadoras.keySet()){transportadorasFaturacao.put(cod,temp);}
         for(Encomenda enc : encomendasRealizadas){
             transpNome = getArtigoVendidos(enc.getLista().get(0)).getTransportadora();
-            temp = geTransportadoraNome(transpNome).calculaExpedicao(enc.getLista().size());
+            temp = getTransportadoraNome(transpNome).calculaExpedicao(enc.getLista().size());
             double value = transportadorasFaturacao.get(transpNome);
             value += temp;
             transportadorasFaturacao.put(transpNome, value);
@@ -221,7 +221,7 @@ public class Vintage {
         for(Encomenda enc : encomendasRealizadas){
             if((enc.getData().isAfter(inicio)) && (enc.getData().isBefore(fim))){
                 transpNome = getArtigoVendidos(enc.getLista().get(0)).getTransportadora();
-                temp = geTransportadoraNome(transpNome).calculaExpedicao(enc.getLista().size());
+                temp = getTransportadoraNome(transpNome).calculaExpedicao(enc.getLista().size());
                 double value = transportadorasFaturacao.get(transpNome);
                 value += temp;
                 transportadorasFaturacao.put(transpNome, value);
@@ -260,6 +260,28 @@ public class Vintage {
             res.put(entry.getKey(), entry.getValue());
         }
 
+        return res;
+    }
+
+    public static Map<Integer,Integer> maiorVendedor (LocalDate inicio, LocalDate fim){
+        Integer temp = 0;
+        Integer tempuser = 0;
+        Map <Integer,Integer> res = new HashMap<>();
+        Map <Integer,Integer> userNrprodutos = new HashMap<>();
+        for(Integer cod : users.keySet()){userNrprodutos.put(cod,temp);}
+        for(Encomenda enc : encomendasRealizadas){
+            if((enc.getData().isAfter(inicio)) && (enc.getData().isBefore(fim))){
+                for(String art : enc.getLista()){
+                    Integer value = userNrprodutos.get(getArtigoVendidos(art).getCodigouser());
+                    value += 1;
+                    userNrprodutos.put(getArtigoVendidos(art).getCodigouser(),value);
+                }
+            }
+        }
+        for(Integer i : userNrprodutos.keySet()){
+            if (userNrprodutos.get(i) > temp){tempuser = i;temp = userNrprodutos.get(i);}
+        }
+        res.put(tempuser,temp);
         return res;
     }
 
@@ -310,7 +332,6 @@ public class Vintage {
             for(Transportadora trans : transportadoras.values()){System.out.println(trans.toString());}
             System.out.println("");
             for(List<Encomenda> enc : encomendas.values()){for(Encomenda es : enc){ System.out.println(es.toString());}}
-            //for(Encomenda enc : encomendasRealizadas){ System.out.println(enc.toString());}
             System.out.println("\n-------------------------------------------------------------------------------------------------------\n");
         }
         else if(choice2.equalsIgnoreCase("nao")){

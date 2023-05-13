@@ -1,5 +1,4 @@
 package POO;
-import java.time.LocalDate;
 
 
 public class Sapatilha extends Artigo{
