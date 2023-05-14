@@ -1,2 +1,2 @@
 Encomenda;749205;pendente;2020-04-16;3;h40g1;1efr3;r1j8d
-Encomenda;865397;finalizada;2020-05-20;1;d81ke
+Encomenda;865397;pendente;2020-05-20;1;d81ke
