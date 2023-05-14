@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.util.Scanner;
 import java.util.Iterator;
 import java.util.*;
+import java.util.Map.Entry;
 
 import POO.Artigo.Uso;
 import POO.Encomenda.Estado;
@@ -248,18 +249,19 @@ public class Vintage {
                 }
             }
         }
-        List<Map.Entry<Integer, Double>> entryList = new ArrayList<>(userFaturacao.entrySet());
-        Collections.sort(entryList, new Comparator<Map.Entry<Integer, Double>>() {
-            @Override
-            public int compare(Map.Entry<Integer, Double> entry1, Map.Entry<Integer, Double> entry2) {
-                return Double.compare(entry2.getValue(), entry1.getValue());
-            }
-        });
+       
         Map<Integer, Double> res = new LinkedHashMap<>();
-        for (Map.Entry<Integer, Double> entry : entryList) {
-            res.put(entry.getKey(), entry.getValue());
-        }
+        for(int i = 0; i < userFaturacao.size(); i++){
+            Map.Entry <Integer,Double> entryMaiorValue = null;
 
+            for (Map.Entry<Integer, Double> entry : userFaturacao.entrySet()) {
+                if (entryMaiorValue == null || entry.getValue() > entryMaiorValue.getValue()) {
+                    entryMaiorValue = entry;
+                }
+            }
+            res.put(entryMaiorValue.getKey(), entryMaiorValue.getValue());
+            userFaturacao.remove(entryMaiorValue.getKey());
+        }
         return res;
     }
 
@@ -300,7 +302,7 @@ public class Vintage {
         System.out.println("");
         for(List<Encomenda> enc : encomendas.values()){for(Encomenda e : enc){System.out.println(e.toString());}}
         
-        System.out.println("\n-------------------------------------------------------------------------------------------------------");
+        System.out.println("\n-------------------------------------------------------------------------------------------------------\n");
 
         System.out.println("Deseja adicionar elementos?\n");
         String choice = sc.nextLine();
@@ -317,7 +319,9 @@ public class Vintage {
             for(List<Encomenda> enc : encomendas.values()){for(Encomenda es : enc){ System.out.println(es.toString());}}
             System.out.println("\n-------------------------------------------------------------------------------------------------------\n");
         }
-        else if(choice.equalsIgnoreCase("nao")){atualizarMarket();System.out.println("\n-------------------------------------------------------------------------------------------------------\n");}
+        else if(choice.equalsIgnoreCase("nao")){
+            atualizarMarket();System.out.println("\n-------------------------------------------------------------------------------------------------------\n");
+        }
         
         System.out.println("Deseja mudar elementos?\n");
         String choice2 = sc.nextLine();

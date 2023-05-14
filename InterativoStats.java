@@ -26,35 +26,42 @@ public class InterativoStats {
             if (splitEspaco[0].equalsIgnoreCase("exit")) return;
             if (splitEspaco[0].equalsIgnoreCase("UserMaiorFaturacao")){
                 System.out.println(Vintage.userMaisFaturou() + ";" + Vintage.getUser(Vintage.userMaisFaturou()).getNome() + ";" + (Vintage.getUser(Vintage.userMaisFaturou()).calculaValor()));
+                System.out.println(" ");
             }
             if (splitEspaco[0].equalsIgnoreCase("UserMaiorFaturacaoData")){
                 System.out.println("");
                 Map<Integer,Double> res = Vintage.userMaisFaturouTempo(LocalDate.parse(splitEspaco[1]), LocalDate.parse(splitEspaco[2]));
                 for(Map.Entry <Integer,Double> entry : res.entrySet()){System.out.println(entry.getKey() + ";" + Vintage.getUser(entry.getKey()).getNome() + ";" + entry.getValue());};
+                System.out.println(" ");
             }
             if (splitEspaco[0].equalsIgnoreCase("FaturacaoVintage")){
                 System.out.println("");
                 System.out.println(Vintage.getFaturacao());
+                System.out.println(" ");
             }
             if (splitEspaco[0].equalsIgnoreCase("TransportadoraMaiorFaturacao")){
                 System.out.println("");
                 Map<String,Double> res = Vintage.transportadoraMaisFaturou();
                 for(Map.Entry <String,Double> entry : res.entrySet()){System.out.println(entry.getKey() + ";" + Vintage.getTransportadoraNome(entry.getKey()).getNome() + ";" + entry.getValue());};
+                System.out.println(" ");
             }
             if (splitEspaco[0].equalsIgnoreCase("TransportadoraMaiorFaturacaoData")){
                 System.out.println("");
                 Map<String,Double> res = Vintage.transportadoraMaisFaturouData(LocalDate.parse(splitEspaco[1]),LocalDate.parse(splitEspaco[2]));
                 for(Map.Entry <String,Double> entry : res.entrySet()){System.out.println(entry.getKey() + ";" + Vintage.getTransportadoraNome(entry.getKey()).getNome() + ";" + entry.getValue());};
+                System.out.println(" ");
             }
             if (splitEspaco[0].equalsIgnoreCase("UsersFaturacaoOrdenados")){
                 System.out.println("");
                 Map<Integer,Double> res = Vintage.listMaisFaturouTempo(LocalDate.parse(splitEspaco[1]),LocalDate.parse(splitEspaco[2]));
                 for(Map.Entry <Integer,Double> entry : res.entrySet()){System.out.println(entry.getKey() + ";" + Vintage.getUser(entry.getKey()).getNome() + ";" + entry.getValue());};
+                System.out.println(" ");
             }
             if (splitEspaco[0].equalsIgnoreCase("MaiorVendedor")){
                 System.out.println("");
                 Map<Integer,Integer> res = Vintage.maiorVendedor(LocalDate.parse(splitEspaco[1]),LocalDate.parse(splitEspaco[2]));
                 for(Map.Entry <Integer,Integer> entry : res.entrySet()){System.out.println(entry.getKey() + ";" + Vintage.getUser(entry.getKey()).getNome() + ";" + entry.getValue() + "artigos");};
+                System.out.println(" ");
             }
         }
         comando.close();
