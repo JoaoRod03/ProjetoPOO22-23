@@ -299,7 +299,7 @@ public class Vintage {
             }
         }
         Map<Integer, Double> res = new LinkedHashMap<>();
-        for(int i = 0; i < userFaturacao.size(); i++){
+        for(int i = 0; i < users.size(); i++){
             Map.Entry <Integer,Double> entryMaiorValue = null;
 
             for (Map.Entry<Integer, Double> entry : userFaturacao.entrySet()) {
@@ -329,7 +329,7 @@ public class Vintage {
         }
         Map<Integer, Double> res = new LinkedHashMap<>();
         double a = 0;
-        for(int i = 0; i < userGastou.size(); i++){
+        for(int i = 0; i < users.size(); i++){
             Map.Entry <Integer,Double> entryMaiorValue = null;
 
             for (Map.Entry<Integer, Double> entry : userGastou.entrySet()) {
