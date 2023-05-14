@@ -5,17 +5,12 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.List; 
 import java.time.LocalDate;
-import java.util.stream.Collectors;
-import java.util.Collections;
 import java.io.IOException;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
-import java.util.Iterator;
-import java.util.*;
-//import java.util.Map.Entry;
+import java.util.LinkedHashMap;
 import java.time.format.DateTimeFormatter;
-
 import POO.Artigo.Uso;
 import POO.Encomenda.Estado;
 

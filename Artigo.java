@@ -1,6 +1,5 @@
 package POO;
 
-import javax.swing.AbstractAction;
 
 public abstract class Artigo {
     private int codigoUser;

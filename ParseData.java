@@ -1,10 +1,5 @@
 package POO;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.List; 
 import java.time.LocalDate;
-import java.util.stream.Collectors;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
