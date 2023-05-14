@@ -129,6 +129,7 @@ public class Encomenda {
         StringBuilder sb = new StringBuilder();
             sb.append("Encomenda")
                 .append(";").append(this.codComprador)
+                .append(";").append(Vintage.getArtigo(lista.get(0)).getTransportadora())
                 .append(";").append(this.calculaTamanho())
                 .append(";").append(this.getPrecoFinal())
                 .append(";").append(this.estado)

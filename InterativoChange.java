@@ -9,12 +9,14 @@ import java.util.stream.Collectors;
 
 public class InterativoChange {
     public static void start(){
-        System.out.println("\nfinalizarEncomenda codArtigo data");
-        System.out.println("avançarDias xDias");
-        System.out.println("removerArtigo codComprador codArtigo");
-        System.out.println("adicionarArtigo codComprador codArtigo");
-        System.out.println("exit");
-        System.out.println("save\n");
+        System.out.println("\nFinalizarEncomenda codigoArtigo data");
+        System.out.println("AvançarDias xDias");
+        System.out.println("RemoverArtigo codigoComprador codigoArtigo");
+        System.out.println("AdicionarArtigo codigoComprador codigoArtigo");
+        System.out.println("PreçoFinalEncomenda codigoComprador transportadora");
+        System.out.println("DevolverEncomenda codigoComprador transportadora");
+        System.out.println("Exit");
+        System.out.println("Save\n");
 
         Scanner comando = new Scanner(System.in);
         Vintage.atualizarMarket();
@@ -39,6 +41,13 @@ public class InterativoChange {
             }
             if (splitEspaco[0].equalsIgnoreCase("adicionarArtigo")){
                 Vintage.adicionarArtigoEncomenda(Integer.parseInt(splitEspaco[1]), splitEspaco[2]);
+            }
+            if (splitEspaco[0].equalsIgnoreCase("Preçofinalencomenda")){
+                double res = Vintage.precoEncomenda(Integer.parseInt(splitEspaco[1]), splitEspaco[2]);
+                System.out.println(res + "$");
+            }
+            if (splitEspaco[0].equalsIgnoreCase("devolverEncomenda")){
+                Vintage.devolverEncomenda(Integer.parseInt(splitEspaco[1]), splitEspaco[2]);
             }
         }
         comando.close();

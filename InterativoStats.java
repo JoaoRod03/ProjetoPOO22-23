@@ -13,6 +13,7 @@ public class InterativoStats {
         System.out.println("UserMaiorFaturaçãoDatas DataInício DataFim");
         System.out.println("UsersMaiorFaturacaoOrdenados DataInício DataFim");
         System.out.println("UsersMaiorGastoOrdenados DataInício DataFim");
+        System.out.println("UserArtigosVendidos codigoUser");
         System.out.println("TransportadoraMaiorFaturação DataInício DataFim");
         System.out.println("TransportadoraMaiorFaturaçãoDatas DataInício DataFim");
         System.out.println("FaturaçãoVintage");
@@ -61,6 +62,12 @@ public class InterativoStats {
                 System.out.println("");
                 Map<Integer,Double> res = Vintage.listMaisAdquiriuTempo(LocalDate.parse(splitEspaco[1]),LocalDate.parse(splitEspaco[2]));
                 for(Map.Entry <Integer,Double> entry : res.entrySet()){System.out.println(entry.getKey() + ";" + Vintage.getUser(entry.getKey()).getNome() + ";" + entry.getValue());};
+                System.out.println(" ");
+            }
+            if (splitEspaco[0].equalsIgnoreCase("UserArtigosVendidos")){
+                System.out.println("");
+                List<String> res = Vintage.getVendidosUSer(Integer.parseInt(splitEspaco[1]));
+                for(String s : res){System.out.println(s);}
                 System.out.println(" ");
             }
         }

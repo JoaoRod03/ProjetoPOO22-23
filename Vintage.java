@@ -90,6 +90,14 @@ public class Vintage {
         }
     }
 
+    public static void removeEncomendaComprador(Integer codComprador, String transportadora){
+        Iterator <Encomenda> iterator = encomendas.get(transportadora).iterator();
+        while(iterator.hasNext()){
+            Encomenda temp = iterator.next();
+            if(temp.getCodigoComprador().equals(codComprador)) iterator.remove();
+        }
+    }
+
     public static LocalDate getData(){
         return data;
     }
@@ -97,6 +105,7 @@ public class Vintage {
     public static void setData(LocalDate data){
         Vintage.data = data;
     }
+
 
     public static List <String> getArtsUser(int cod){
         List <String> res = new ArrayList<>();
@@ -112,6 +121,45 @@ public class Vintage {
             if(art.getCodigouser() == cod) res.add(art.getCodigo());
         }
         return res;
+    }
+
+    public static void adicionarArtigoEncomenda(Integer codComprador, String cod){
+        for(Encomenda enc : encomendas.get(getArtigo(cod).getTransportadora())){
+            if(enc.getEstado() == Estado.pendente && enc.getCodigoComprador().equals(codComprador)){
+                enc.addArt(cod);
+            }
+        }
+    }
+
+    public static void removerArtigoEncomenda(Integer codComprador, String cod){
+        for(Encomenda enc : encomendas.get(getArtigo(cod).getTransportadora())){
+            if(enc.getEstado() == Estado.pendente && enc.getCodigoComprador().equals(codComprador)){
+                if (enc.getLista().contains(cod)) {
+                    enc.removeArt(cod);
+                    if (enc.getLista().size() == 0) encomendas.get(getArtigo(cod).getTransportadora()).remove(enc);
+                    break;
+                }
+            }
+        }
+    }
+
+    public static double precoEncomenda(Integer codComprador, String transportadora){
+        double res = 0;
+        for(Encomenda enc : encomendas.get(transportadora)){
+            if(enc.getCodigoComprador().equals(codComprador)) res = enc.getPrecoFinal();
+        }
+        return res;
+    }
+
+    public static void devolverEncomenda(Integer codComprador, String transportadora){
+        for(Encomenda enc : encomendas.get(transportadora)){
+            LocalDate expedicao = enc.getData().plusDays(getTransportadoraNome(transportadora).getTempoexpedicao());
+            if(enc.getCodigoComprador().equals(codComprador) && enc.getEstado() == Estado.finalizada && expedicao.isAfter(data)){
+                encomendas.get(transportadora).remove(enc);
+                break;
+            }
+            
+        }
     }
 
 
@@ -152,8 +200,9 @@ public class Vintage {
                             
 
                         }
-                    encomendasRealizadas.add(enc);
-                    iterator.remove();
+                        enc.setEstado(Estado.expedida);
+                        encomendasRealizadas.add(enc);
+                        iterator.remove();
                     }
                 }
             }
@@ -254,7 +303,6 @@ public class Vintage {
                 }
             }
         }
-       
         Map<Integer, Double> res = new LinkedHashMap<>();
         for(int i = 0; i < userFaturacao.size(); i++){
             Map.Entry <Integer,Double> entryMaiorValue = null;
@@ -284,7 +332,6 @@ public class Vintage {
                 }
             }
         }
-       
         Map<Integer, Double> res = new LinkedHashMap<>();
         double a = 0;
         for(int i = 0; i < userGastou.size(); i++){
@@ -301,27 +348,7 @@ public class Vintage {
         }
         return res;
     }
-
-    public static void removerArtigoEncomenda(Integer codComprador, String cod){
-            for(Encomenda enc : encomendas.get(getArtigo(cod).getTransportadora())){
-                if(enc.getEstado() == Estado.pendente && enc.getCodigoComprador().equals(codComprador)){
-                    if (enc.getLista().contains(cod)) {
-                        enc.removeArt(cod);
-                        if (enc.getLista().size() == 0) encomendas.get(getArtigo(cod).getTransportadora()).remove(enc);
-                        break;
-                    }
-                }
-            }
-    }
-
-    public static void adicionarArtigoEncomenda(Integer codComprador, String cod){
-        for(Encomenda enc : encomendas.get(getArtigo(cod).getTransportadora())){
-            if(enc.getEstado() == Estado.pendente && enc.getCodigoComprador().equals(codComprador)){
-                enc.addArt(cod);
-            }
-        }
-}
-
+   
 
 
 
