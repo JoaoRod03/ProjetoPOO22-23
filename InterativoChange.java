@@ -31,23 +31,29 @@ public class InterativoChange {
             }
             if (splitEspaco[0].equalsIgnoreCase("finalizarEncomenda")){
                 Vintage.finalizarEncomenda(splitEspaco[1],LocalDate.parse(splitEspaco[2]));
+                System.out.println(" ");
             }
-            if (splitEspaco[0].equalsIgnoreCase("avançarDias")){
+            if (splitEspaco[0].equalsIgnoreCase("avancarDias")){
                 Vintage.setData(Vintage.getData().plusDays(Long.parseLong(splitEspaco[1])));
                 Vintage.atualizarMarket();
+                System.out.println(" ");
             }
             if (splitEspaco[0].equalsIgnoreCase("removerArtigo")){
                 Vintage.removerArtigoEncomenda(Integer.parseInt(splitEspaco[1]), splitEspaco[2]);
+                System.out.println(" ");
             }
             if (splitEspaco[0].equalsIgnoreCase("adicionarArtigo")){
                 Vintage.adicionarArtigoEncomenda(Integer.parseInt(splitEspaco[1]), splitEspaco[2]);
+                System.out.println(" ");
             }
-            if (splitEspaco[0].equalsIgnoreCase("Preçofinalencomenda")){
+            if (splitEspaco[0].equalsIgnoreCase("precofinalencomenda")){
                 double res = Vintage.precoEncomenda(Integer.parseInt(splitEspaco[1]), splitEspaco[2]);
                 System.out.println(res + "$");
+                System.out.println(" ");
             }
             if (splitEspaco[0].equalsIgnoreCase("devolverEncomenda")){
                 Vintage.devolverEncomenda(Integer.parseInt(splitEspaco[1]), splitEspaco[2]);
+                System.out.println(" ");
             }
         }
         comando.close();

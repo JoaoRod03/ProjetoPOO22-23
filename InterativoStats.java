@@ -14,7 +14,7 @@ public class InterativoStats {
         System.out.println("UsersMaiorFaturacaoOrdenados DataInício DataFim");
         System.out.println("UsersMaiorGastoOrdenados DataInício DataFim");
         System.out.println("UserArtigosVendidos codigoUser");
-        System.out.println("TransportadoraMaiorFaturação DataInício DataFim");
+        System.out.println("TransportadoraMaiorFaturação");
         System.out.println("TransportadoraMaiorFaturaçãoDatas DataInício DataFim");
         System.out.println("FaturaçãoVintage");
         System.out.println("exit\n");

@@ -9,15 +9,15 @@ import java.util.stream.Collectors;
 
 public class InterativoAdd {
     public static void start(){
-        System.out.println("\nWelcome to Vintage!\nChoose one of the following commands\n");
-        System.out.println("add Mala Mala;CodigoUser;Uso;avaliacao;donos;descricao;marca;codigo;preco;correcao;transportadora;comprimento;largura;altura;material;Colecao;premium");
-        System.out.println("add Tshirt Tshirt;CodigoUser;Uso;avaliacao;donos;descricao;marca;codigo;preco;correcao;transportadora;tamanho;padrao");
-        System.out.println("add Sapatilha Sapatilha;CodigoUser;Uso;avaliacao;donos;descricao;marca;codigo;preco;correcao;transportadora;tamanho;laces;cor;Colecao;premium");
-        System.out.println("add Encomenda Encomenda;CodComprador;estado;data;nrartigos;artigo1;artigoN");
-        System.out.println("add User User;codigo;email;nome;morada;nif");
-        System.out.println("add Transportadora Transportadora;nome;basePequena;baseMedia;baseGrande;imposto;lucro;tempoexpedicao");
-        System.out.println("exit");
-        System.out.println("save\n");
+        System.out.println("\nBem-vindo à Vintage!\nPara prosseguir escolha um dos seguintes comandos\n");
+        System.out.println("Add Mala Mala;CodigoUser;Uso;avaliacao;donos;descricao;marca;codigo;preco;correcao;transportadora;comprimento;largura;altura;material;Colecao;premium");
+        System.out.println("Add Tshirt Tshirt;CodigoUser;Uso;avaliacao;donos;descricao;marca;codigo;preco;correcao;transportadora;tamanho;padrao");
+        System.out.println("Add Sapatilha Sapatilha;CodigoUser;Uso;avaliacao;donos;descricao;marca;codigo;preco;correcao;transportadora;tamanho;laces;cor;Colecao;premium");
+        System.out.println("Add Encomenda Encomenda;CodComprador;estado;data;nrartigos;artigo1;artigoN");
+        System.out.println("Add User User;codigo;email;nome;morada;nif");
+        System.out.println("Add Transportadora Transportadora;nome;basePequena;baseMedia;baseGrande;imposto;lucro;tempoexpedicao");
+        System.out.println("Exit");
+        System.out.println("Save\n");
         Scanner comando = new Scanner(System.in);
 
         while(comando.hasNextLine()){ 
