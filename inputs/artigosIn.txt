@@ -1,0 +1,6 @@
+Mala;123123;Usado;3;2;Top;LouisV;1efr3;110;0.3;CTT;15;5;5;Pele;2010;false
+Sapatilha;123123;Usado;2.6;1;CordoesRompidos;Adidas;7uf9w;70;0.2;DPD;42;true;Branco;2023;false
+Tshirt;865397;Novo;4;0;Perfeita;Hacket;r1j8d;25;0.4;Fedex;XL;liso
+Mala;937501;Novo;5;0;BolsoExterior;Prada;v83b9;520;0.2;Fedex;20;10;10;Couro;2015;true
+Sapatilha;150347;Novo;4.5;0;ColeçaoCR7;Nike;h40g1;170;0.1;CTT;45;true;Laranja;2020;true
+Tshirt;749205;Usado;2.5;1;MangaLarga;CalvinKlein;d81ke;20;0.1;DPD;M;palmeiras

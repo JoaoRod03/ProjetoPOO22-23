@@ -151,6 +151,12 @@ public class User {
         for(Artigo art : this.vendidos.values()) res += art.calculaPreco();
         return res;
     }
+    
+    public double calculaValorGasto(){
+        double res = 0;
+        for(Artigo art : this.adquiridos.values()) res += art.calculaPreco();
+        return res;
+    }
 
     public void removeVenda(String cod){
         venda.remove(cod);
@@ -158,6 +164,10 @@ public class User {
 
     public void addVendidos(String cod){
         vendidos.put(cod, Vintage.getArtigo(cod));
+    }
+
+    public void addAdquiridos(String cod){
+        adquiridos.put(cod, Vintage.getArtigo(cod));
     }
 
 

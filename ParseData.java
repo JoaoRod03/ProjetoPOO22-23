@@ -13,7 +13,7 @@ public class ParseData {
     public static LocalDate parse(){
         LocalDate data = LocalDate.now();
         try{
-            File file = new File("txts/data.txt");
+            File file = new File("POO/inputs/data.txt");
             Scanner scanner = new Scanner(file);
             if (scanner.hasNextLine()) {
                 String line = scanner.nextLine();

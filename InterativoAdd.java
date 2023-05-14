@@ -13,7 +13,7 @@ public class InterativoAdd {
         System.out.println("add Mala Mala;CodigoUser;Uso;avaliacao;donos;descricao;marca;codigo;preco;correcao;transportadora;comprimento;largura;altura;material;Colecao;premium");
         System.out.println("add Tshirt Tshirt;CodigoUser;Uso;avaliacao;donos;descricao;marca;codigo;preco;correcao;transportadora;tamanho;padrao");
         System.out.println("add Sapatilha Sapatilha;CodigoUser;Uso;avaliacao;donos;descricao;marca;codigo;preco;correcao;transportadora;tamanho;laces;cor;Colecao;premium");
-        System.out.println("add Encomenda Encomenda;estado;data;nrartigos;artigo1;artigoN");
+        System.out.println("add Encomenda Encomenda;CodComprador;estado;data;nrartigos;artigo1;artigoN");
         System.out.println("add User User;codigo;email;nome;morada;nif");
         System.out.println("add Transportadora Transportadora;nome;basePequena;baseMedia;baseGrande;imposto;lucro;tempoexpedicao");
         System.out.println("exit");

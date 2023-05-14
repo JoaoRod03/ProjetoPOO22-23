@@ -13,7 +13,8 @@ import java.io.FileWriter;
 import java.util.Scanner;
 import java.util.Iterator;
 import java.util.*;
-import java.util.Map.Entry;
+//import java.util.Map.Entry;
+import java.time.format.DateTimeFormatter;
 
 import POO.Artigo.Uso;
 import POO.Encomenda.Estado;
@@ -135,6 +136,7 @@ public class Vintage {
                 Encomenda enc = iterator.next();
                 if(enc.getEstado() == Estado.finalizada){
                     LocalDate expedicao = enc.getData().plusDays(tempoexpedicao);
+                    User comprador = getUser(enc.getCodigoComprador());
 
                     if(data.isEqual(expedicao) || data.isAfter(expedicao)){
                         for(String temp : enc.getLista()){
@@ -145,7 +147,10 @@ public class Vintage {
                             u.removeVenda(temp);
                             u.addVendidos(temp);
                             vendidos.put(temp, market.get(temp));
+                            comprador.addAdquiridos(temp);
                             market.remove(temp);
+                            
+
                         }
                     encomendasRealizadas.add(enc);
                     iterator.remove();
@@ -265,27 +270,59 @@ public class Vintage {
         return res;
     }
 
-    public static Map<Integer,Integer> maiorVendedor (LocalDate inicio, LocalDate fim){
-        Integer temp = 0;
-        Integer tempuser = 0;
-        Map <Integer,Integer> res = new HashMap<>();
-        Map <Integer,Integer> userNrprodutos = new HashMap<>();
-        for(Integer cod : users.keySet()){userNrprodutos.put(cod,temp);}
+    public static Map<Integer,Double> listMaisAdquiriuTempo(LocalDate inicio, LocalDate fim){
+        double temp = 0;
+        Map <Integer,Double> userGastou = new HashMap<>();
+        for(Integer cod : users.keySet()){userGastou.put(cod,temp);}
         for(Encomenda enc : encomendasRealizadas){
             if((enc.getData().isAfter(inicio)) && (enc.getData().isBefore(fim))){
+                Integer codBuyer = enc.getCodigoComprador();
                 for(String art : enc.getLista()){
-                    Integer value = userNrprodutos.get(getArtigoVendidos(art).getCodigouser());
-                    value += 1;
-                    userNrprodutos.put(getArtigoVendidos(art).getCodigouser(),value);
+                    Double value = userGastou.get(codBuyer);
+                    value += (getArtigoVendidos(art).calculaPreco());
+                    userGastou.put(codBuyer,value);
                 }
             }
         }
-        for(Integer i : userNrprodutos.keySet()){
-            if (userNrprodutos.get(i) > temp){tempuser = i;temp = userNrprodutos.get(i);}
+       
+        Map<Integer, Double> res = new LinkedHashMap<>();
+        double a = 0;
+        for(int i = 0; i < userGastou.size(); i++){
+            Map.Entry <Integer,Double> entryMaiorValue = null;
+
+            for (Map.Entry<Integer, Double> entry : userGastou.entrySet()) {
+                if (entryMaiorValue == null || entry.getValue() > entryMaiorValue.getValue()) {
+                    entryMaiorValue = entry;
+                }
+            }
+            
+            if(entryMaiorValue.getValue() != a) res.put(entryMaiorValue.getKey(), entryMaiorValue.getValue());
+            userGastou.remove(entryMaiorValue.getKey());
         }
-        res.put(tempuser,temp);
         return res;
     }
+
+    public static void removerArtigoEncomenda(Integer codComprador, String cod){
+            for(Encomenda enc : encomendas.get(getArtigo(cod).getTransportadora())){
+                if(enc.getEstado() == Estado.pendente && enc.getCodigoComprador().equals(codComprador)){
+                    if (enc.getLista().contains(cod)) {
+                        enc.removeArt(cod);
+                        if (enc.getLista().size() == 0) encomendas.get(getArtigo(cod).getTransportadora()).remove(enc);
+                        break;
+                    }
+                }
+            }
+    }
+
+    public static void adicionarArtigoEncomenda(Integer codComprador, String cod){
+        for(Encomenda enc : encomendas.get(getArtigo(cod).getTransportadora())){
+            if(enc.getEstado() == Estado.pendente && enc.getCodigoComprador().equals(codComprador)){
+                enc.addArt(cod);
+            }
+        }
+}
+
+
 
 
     public static void executar(String []args){
@@ -358,31 +395,41 @@ public class Vintage {
 
     public static void save(){
         try{
-            File fileusers = new File("txts/usersOut.txt");
+
+            File fileusers = new File("POO/outputs/usersOut.txt");
             FileWriter userswriter = new FileWriter(fileusers);
             
             for (User u : users.values()){ userswriter.write(u.toString() + "\n");}
             userswriter.close();
 
-            File fileartigos = new File("txts/artigosOut.txt");
+            File fileartigos = new File("POO/outputs/artigosOut.txt");
             FileWriter artigoswriter = new FileWriter(fileartigos);
             
             for (Artigo a : market.values()){ artigoswriter.write(a.toString() + "\n");}
             artigoswriter.close();
 
-            File filetransportadoras = new File("txts/transportadorasOut.txt");
+            File filetransportadoras = new File("POO/outputs/transportadorasOut.txt");
             FileWriter transportadoraswriter = new FileWriter(filetransportadoras);
             
             for (Transportadora t : transportadoras.values()){ transportadoraswriter.write(t.toString() + "\n");}
             transportadoraswriter.close();
 
-            File fileencomendas = new File("txts/encomendasOut.txt");
+            File fileencomendas = new File("POO/outputs/encomendasOut.txt");
             FileWriter encomendaswriter = new FileWriter(fileencomendas);
             
             for(List <Encomenda> temp : encomendas.values()){
                 for (Encomenda e : temp){ encomendaswriter.write(e.toStringSave() + "\n");}
             }
             encomendaswriter.close();
+        
+            File filedata = new File("POO/outputs/dataOut.txt");
+            FileWriter datawriter = new FileWriter(filedata);
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String dateString = data.format(formatter);
+            datawriter.write(dateString);
+            datawriter.close();
+
         }
         catch(IOException e){
             System.out.println("Error");

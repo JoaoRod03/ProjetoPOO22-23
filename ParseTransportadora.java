@@ -14,7 +14,7 @@ public class ParseTransportadora {
     public static Map<String,Transportadora> parse(){
         Map<String,Transportadora> transportadoras = new HashMap<>();
         try{
-            File file = new File("txts/transportadorasIn.txt");
+            File file = new File("POO/inputs/transportadorasIn.txt");
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();

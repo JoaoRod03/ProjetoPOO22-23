@@ -1,0 +1,5 @@
+User;123123;josefino@gmail.com;Josefino;Braga;255255255
+User;865397;alberta@gmail.com;Alberta;Lisboa;239002147
+User;749205;luis@gmail.com;Luís;Porto;760284563
+User;937501;antonieta@gmail.com;Antonieta;Leiria;925953017
+User;150347;guilherme@gmail.com;Guilherme;Setúbal;840173925

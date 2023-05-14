@@ -97,6 +97,10 @@ public class Encomenda {
     public void addArt(String artigo){
         this.lista.add(artigo);
     }
+
+    public void removeArt(String artigo){
+        this.lista.remove(artigo);
+    }
     
     public double getPrecoFinal(){
         double res = 0;
@@ -124,6 +128,7 @@ public class Encomenda {
     public String toString() {
         StringBuilder sb = new StringBuilder();
             sb.append("Encomenda")
+                .append(";").append(this.codComprador)
                 .append(";").append(this.calculaTamanho())
                 .append(";").append(this.getPrecoFinal())
                 .append(";").append(this.estado)
@@ -142,6 +147,7 @@ public class Encomenda {
     public String toStringSave() {
         StringBuilder sb = new StringBuilder();
             sb.append("Encomenda")
+                .append(";").append(this.codComprador)
                 .append(";").append(this.estado)
                 .append(";").append(this.data)
                 .append(";").append(this.lista.size())

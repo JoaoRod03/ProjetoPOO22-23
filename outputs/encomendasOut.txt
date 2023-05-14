@@ -1,0 +1,3 @@
+Encomenda;749205;finalizada;2020-04-16;2;h40g1;1efr3
+Encomenda;749205;finalizada;2020-04-16;1;7uf9w
+Encomenda;865397;pendente;2020-05-20;1;d81ke

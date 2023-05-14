@@ -13,7 +13,7 @@ public class ParseEncomenda {
     public static Map<String,List<Encomenda>> parse(){
         Map<String,List<Encomenda>> encomendas = new HashMap<>();
         try{
-            File file = new File("txts/encomendasIn.txt");
+            File file = new File("POO/inputs/encomendasIn.txt");
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
