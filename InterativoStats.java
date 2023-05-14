@@ -21,7 +21,10 @@ public class InterativoStats {
         while(comando.hasNextLine()){ 
             String line = comando.nextLine();
             String []splitEspaco = line.split(" ");
-            if (splitEspaco[0].equalsIgnoreCase("exit")) return;
+            if (splitEspaco[0].equalsIgnoreCase("exit")) {
+                comando.close(); 
+                return;
+            }
             if (splitEspaco[0].equalsIgnoreCase("UserMaiorFaturacao")){
                 System.out.println(Vintage.userMaisFaturou() + ";" + Vintage.getUser(Vintage.userMaisFaturou()).getNome() + ";" + (Vintage.getUser(Vintage.userMaisFaturou()).calculaValor()));
                 System.out.println(" ");

@@ -20,9 +20,13 @@ public class InterativoChange {
         while(comando.hasNextLine()){ 
             String line = comando.nextLine();
             String []splitEspaco = line.split(" ");
-            if (splitEspaco[0].equalsIgnoreCase("exit")) return;
+            if (splitEspaco[0].equalsIgnoreCase("exit")) {
+                comando.close(); 
+                return;
+            }
             if (splitEspaco[0].equalsIgnoreCase("save")) {
                 Vintage.save();
+                comando.close(); 
                 return;
             }
             if (splitEspaco[0].equalsIgnoreCase("finalizarEncomenda")){
