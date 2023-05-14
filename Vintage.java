@@ -380,7 +380,7 @@ public class Vintage {
             FileWriter encomendaswriter = new FileWriter(fileencomendas);
             
             for(List <Encomenda> temp : encomendas.values()){
-                for (Encomenda e : temp){ encomendaswriter.write(e.toString() + "\n");}
+                for (Encomenda e : temp){ encomendaswriter.write(e.toStringSave() + "\n");}
             }
             encomendaswriter.close();
         }

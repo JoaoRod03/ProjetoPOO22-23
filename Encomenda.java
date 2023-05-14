@@ -19,20 +19,23 @@ public class Encomenda {
     private Tamanho tamanho;
     private Estado estado;
     private LocalDate data;
+    private Integer codComprador;
 
     public Encomenda(){
         this.lista = new ArrayList<String>();
         this.tamanho = Tamanho.media;
         this.estado = Estado.pendente;
         this.data = LocalDate.now();
+        this.codComprador = 0;
     }
 
-    public Encomenda(List<String> lista, Tamanho tamanho, double precofinal, Estado estado, LocalDate data){
+    public Encomenda(List<String> lista, Tamanho tamanho, double precofinal, Estado estado, LocalDate data, Integer codComprador){
         this.lista = new ArrayList<String>();
         this.lista.addAll(lista);
         this.tamanho = tamanho;
         this.estado = estado;
         this.data = data;
+        this.codComprador = codComprador;
     }
 
     public Encomenda(Encomenda encomenda){
@@ -40,6 +43,7 @@ public class Encomenda {
         this.tamanho = encomenda.getTamanho();
         this.estado = encomenda.getEstado();
         this.data = encomenda.getData();
+        this.codComprador = encomenda.getCodigoComprador();
     }
 
     public Encomenda clone(){
@@ -64,6 +68,10 @@ public class Encomenda {
         return this.data;
     }
 
+    public Integer getCodigoComprador(){
+        return this.codComprador;
+    }
+
     public void setLista(List<String> lista){
         List <String> res = new ArrayList<String>();
         res.addAll(lista);
@@ -80,6 +88,10 @@ public class Encomenda {
 
     public void setData(LocalDate data){
         this.data = data;
+    }
+
+    public void setCodigoComprador(Integer codComprador){
+        this.codComprador = codComprador;
     }
 
     public void addArt(String artigo){
@@ -108,12 +120,28 @@ public class Encomenda {
         return tamanho;
     }
 
-    @Override
+    
     public String toString() {
         StringBuilder sb = new StringBuilder();
             sb.append("Encomenda")
                 .append(";").append(this.calculaTamanho())
                 .append(";").append(this.getPrecoFinal())
+                .append(";").append(this.estado)
+                .append(";").append(this.data)
+                .append(";").append(this.lista.size())
+                .append(";");
+                for (int i = 0; i < this.lista.size(); i++) {
+                    sb.append(this.lista.get(i));
+                    if (i < this.lista.size() - 1) {
+                        sb.append(";");
+                    }
+                }
+        return sb.toString();
+    }
+
+    public String toStringSave() {
+        StringBuilder sb = new StringBuilder();
+            sb.append("Encomenda")
                 .append(";").append(this.estado)
                 .append(";").append(this.data)
                 .append(";").append(this.lista.size())
